@@ -195,3 +195,11 @@ debugging/
 
 # Local docs development (versions.json is managed by mike on gh-pages in production)
 docs/versions.json
+
+# exclude pytorch model weights files from gitignore
+!*.pth
+/outputs
+/pipeline
+/analysis_valid
+pred_cache_valid
+*.npz
