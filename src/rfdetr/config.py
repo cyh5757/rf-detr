@@ -275,6 +275,8 @@ class TrainConfig(BaseModel):
     early_stopping_use_ema: bool = False
     tensorboard: bool = False
     wandb: bool = True
+    mlflow: bool = False
+    clearml: bool = False
     project: Optional[str] = None
     run: Optional[str] = None
     class_names: List[str] = None

@@ -1,5 +1,7 @@
 # trainV8.py CLI 사용법
 
+> trainV10 사용법(타일 + `aug_config`)은 `/home/mbd1234/rf-detr/trainV10_cli.md` 참고.
+
 ## 핵심 변경점
 - `--resolution`이 태그용이 아니라 **실제 학습 입력 해상도**로 적용됩니다.
 - `--amp` / `--no-amp` 옵션으로 mixed precision을 명시적으로 제어할 수 있습니다.

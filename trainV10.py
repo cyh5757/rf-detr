@@ -10,12 +10,15 @@ RF-DETR Segmentation Training Script (trainV10)
 
 실행 예:
   cd /home/mbd1234/rf-detr
-  python trainV10.py --size M --resolution 432 --tile-enable --aug-enable --aug-policy conservative
+  python trainV10.py --size M --resolution 432 --tile-enable \
+    --train-aug-preset aggressive \
+    --aug-enable --aug-policy conservative
 """
 
 from __future__ import annotations
 
 import argparse
+import copy
 import gc
 import json
 import math
@@ -253,6 +256,71 @@ def get_aug_profile(policy: str) -> dict[str, float]:
         "beta_max": 15.0,
         "noise_sigma": 8.0,
     }
+
+
+TRAIN_AUG_PRESET_CHOICES = [
+    "default",
+    "none",
+    "conservative",
+    "aggressive",
+    "aerial",
+    "industrial",
+]
+
+
+def load_train_aug_config_json(path: Path) -> dict:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as e:
+        raise ValueError(f"train_aug_config_json 읽기 실패: {path} ({e})") from e
+
+    if not isinstance(payload, dict):
+        raise ValueError(
+            f"train_aug_config_json는 dict(JSON object)여야 함: {path}"
+        )
+    for k, v in payload.items():
+        if not isinstance(k, str):
+            raise ValueError(f"aug_config key는 문자열이어야 함: key={k!r}")
+        if not isinstance(v, dict):
+            raise ValueError(f"aug_config[{k!r}] 값은 dict여야 함: {type(v).__name__}")
+    return payload
+
+
+def resolve_train_aug_config(train_aug_preset: str, train_aug_config_json: Optional[Path]) -> tuple[Optional[dict], str]:
+    if train_aug_config_json is not None:
+        return load_train_aug_config_json(train_aug_config_json), f"custom:{train_aug_config_json}"
+
+    preset = str(train_aug_preset).strip().lower()
+    if preset == "default":
+        return None, "default"
+    if preset == "none":
+        return {}, "none"
+
+    try:
+        from rfdetr.datasets.aug_config import (
+            AUG_AERIAL,
+            AUG_AGGRESSIVE,
+            AUG_CONSERVATIVE,
+            AUG_INDUSTRIAL,
+        )
+    except Exception as e:
+        raise RuntimeError(
+            "rfdetr.datasets.aug_config import 실패. "
+            "train augmentation preset을 사용하려면 rfdetr import가 가능해야 합니다."
+        ) from e
+
+    presets = {
+        "conservative": AUG_CONSERVATIVE,
+        "aggressive": AUG_AGGRESSIVE,
+        "aerial": AUG_AERIAL,
+        "industrial": AUG_INDUSTRIAL,
+    }
+    if preset not in presets:
+        raise ValueError(
+            f"지원하지 않는 train_aug_preset: {train_aug_preset}. "
+            f"choices={TRAIN_AUG_PRESET_CHOICES}"
+        )
+    return copy.deepcopy(presets[preset]), preset
 
 
 def draw_tile_annotations(image_bgr: np.ndarray, anns: list[dict]) -> np.ndarray:
@@ -1037,8 +1105,10 @@ def call_train(model, **kwargs):
     from rfdetr.config import ModelConfig, SegmentationTrainConfig
 
     allowed = set(SegmentationTrainConfig.model_fields.keys()) | set(ModelConfig.model_fields.keys())
-    filtered = {k: v for k, v in kwargs.items() if k in allowed and v is not None}
-    dropped = [k for k, v in kwargs.items() if k not in allowed and v is not None]
+    passthrough = {"aug_config"}
+    allowed_effective = allowed | passthrough
+    filtered = {k: v for k, v in kwargs.items() if k in allowed_effective and v is not None}
+    dropped = [k for k, v in kwargs.items() if k not in allowed_effective and v is not None]
     if dropped:
         print(f"[WARN] Dropped unsupported train kwargs: {sorted(dropped)}")
     return model.train(**filtered)
@@ -1084,6 +1154,8 @@ class TrainConfig:
     aug_verify_count: int
     aug_verify_dir: Optional[Path]
     aug_verify_only: bool
+    train_aug_preset: str
+    train_aug_config_json: Optional[Path]
 
 
 def parse_args() -> TrainConfig:
@@ -1146,13 +1218,36 @@ def parse_args() -> TrainConfig:
     p.add_argument("--tile-output-root", type=str, default=None)
     p.add_argument("--tile-rebuild", action="store_true", help="기존 타일 데이터셋 강제 재생성")
 
-    p.add_argument("--aug-enable", dest="aug_enable", action="store_true", default=False)
-    p.add_argument("--no-aug-enable", dest="aug_enable", action="store_false")
-    p.add_argument("--aug-policy", type=str, default="conservative", choices=["conservative", "aggressive"])
-    p.add_argument("--aug-train-copies", type=int, default=1, help="train 타일당 추가 augmentation 샘플 수")
-    p.add_argument("--aug-verify-count", type=int, default=20, help="augmentation preview 저장 개수")
-    p.add_argument("--aug-verify-dir", type=str, default=None, help="augmentation preview 출력 폴더")
-    p.add_argument("--aug-verify-only", action="store_true", help="타일/증강 생성+검증까지만 수행하고 학습은 생략")
+    p.add_argument("--aug-enable", dest="aug_enable", action="store_true", default=False, help="타일 오프라인 증강 활성화")
+    p.add_argument("--no-aug-enable", dest="aug_enable", action="store_false", help="타일 오프라인 증강 비활성화")
+    p.add_argument(
+        "--aug-policy",
+        type=str,
+        default="conservative",
+        choices=["conservative", "aggressive"],
+        help="타일 오프라인 증강 정책",
+    )
+    p.add_argument("--aug-train-copies", type=int, default=1, help="train 타일당 추가 오프라인 augmentation 샘플 수")
+    p.add_argument("--aug-verify-count", type=int, default=20, help="오프라인 augmentation preview 저장 개수")
+    p.add_argument("--aug-verify-dir", type=str, default=None, help="오프라인 augmentation preview 출력 폴더")
+    p.add_argument("--aug-verify-only", action="store_true", help="타일/오프라인 증강 생성+검증까지만 수행하고 학습은 생략")
+
+    p.add_argument(
+        "--train-aug-preset",
+        type=str,
+        default="default",
+        choices=TRAIN_AUG_PRESET_CHOICES,
+        help=(
+            "model.train(aug_config=...) 프리셋. "
+            "default는 rfdetr 기본 AUG_CONFIG, none은 augmentation 비활성화({})."
+        ),
+    )
+    p.add_argument(
+        "--train-aug-config-json",
+        type=str,
+        default=None,
+        help="custom aug_config JSON 파일 경로. 지정 시 --train-aug-preset보다 우선.",
+    )
 
     a = p.parse_args()
 
@@ -1172,6 +1267,12 @@ def parse_args() -> TrainConfig:
         raise ValueError(f"aug_train_copies는 0 이상이어야 함: {a.aug_train_copies}")
     if a.aug_verify_count < 0:
         raise ValueError(f"aug_verify_count는 0 이상이어야 함: {a.aug_verify_count}")
+    if a.train_aug_config_json is not None:
+        pth = Path(a.train_aug_config_json)
+        if not pth.exists():
+            raise FileNotFoundError(f"없음: train_aug_config_json={pth}")
+        if not pth.is_file():
+            raise ValueError(f"파일이 아님: train_aug_config_json={pth}")
 
     data_root = Path(a.data_root)
     tile_output_root = (
@@ -1188,6 +1289,7 @@ def parse_args() -> TrainConfig:
     )
 
     aug_verify_dir = Path(a.aug_verify_dir) if a.aug_verify_dir is not None else None
+    train_aug_config_json = Path(a.train_aug_config_json) if a.train_aug_config_json is not None else None
 
     return TrainConfig(
         data_root=data_root,
@@ -1225,6 +1327,8 @@ def parse_args() -> TrainConfig:
         aug_verify_count=int(a.aug_verify_count),
         aug_verify_dir=aug_verify_dir,
         aug_verify_only=bool(a.aug_verify_only),
+        train_aug_preset=str(a.train_aug_preset),
+        train_aug_config_json=train_aug_config_json,
     )
 
 
@@ -1274,6 +1378,11 @@ def main():
             print(json.dumps(tile_meta, ensure_ascii=False, indent=2))
         return
 
+    train_aug_config, train_aug_source = resolve_train_aug_config(
+        train_aug_preset=cfg.train_aug_preset,
+        train_aug_config_json=cfg.train_aug_config_json,
+    )
+
     train_ann, val_ann = assert_coco_layout(train_data_root)
     if cfg.sanity_check:
         quick_segmentation_sanity_check(train_ann)
@@ -1284,6 +1393,11 @@ def main():
         model_tag += f"__TILE{cfg.tile_size}_ov{int(round(cfg.tile_overlap * 100)):02d}"
     if cfg.aug_enable:
         model_tag += f"__AUG_{cfg.aug_policy}_x{cfg.aug_train_copies}"
+    if train_aug_source.startswith("custom:"):
+        custom_stem = cfg.train_aug_config_json.stem if cfg.train_aug_config_json is not None else "custom"
+        model_tag += f"__TRAUG_custom_{custom_stem}"
+    elif train_aug_source != "default":
+        model_tag += f"__TRAUG_{train_aug_source}"
     if cfg.gradient_checkpointing:
         model_tag += "__GC"
     if cfg.amp:
@@ -1316,13 +1430,23 @@ def main():
         print(f"[INFO] tile_size          : {cfg.tile_size}")
         print(f"[INFO] tile_overlap       : {cfg.tile_overlap}")
         print(f"[INFO] tile_output_root   : {cfg.tile_output_root}")
-    print(f"[INFO] aug_enable         : {cfg.aug_enable}")
+    print(f"[INFO] tile_aug_enable    : {cfg.aug_enable}")
     if cfg.aug_enable:
-        print(f"[INFO] aug_policy         : {cfg.aug_policy}")
-        print(f"[INFO] aug_train_copies   : {cfg.aug_train_copies}")
-        print(f"[INFO] aug_verify_count   : {cfg.aug_verify_count}")
-        print(f"[INFO] aug_verify_dir     : {aug_verify_dir}")
-    print(f"[INFO] aug_verify_only    : {cfg.aug_verify_only}")
+        print(f"[INFO] tile_aug_policy    : {cfg.aug_policy}")
+        print(f"[INFO] tile_aug_copies    : {cfg.aug_train_copies}")
+        print(f"[INFO] tile_aug_verify_n  : {cfg.aug_verify_count}")
+        print(f"[INFO] tile_aug_verify_dir: {aug_verify_dir}")
+    print(f"[INFO] tile_aug_verify_only: {cfg.aug_verify_only}")
+    print(f"[INFO] train_aug_preset   : {cfg.train_aug_preset}")
+    print(f"[INFO] train_aug_source   : {train_aug_source}")
+    if cfg.train_aug_config_json is not None:
+        print(f"[INFO] train_aug_json     : {cfg.train_aug_config_json}")
+    if train_aug_config is None:
+        print("[INFO] train_aug_config   : default(AUG_CONFIG)")
+    elif len(train_aug_config) == 0:
+        print("[INFO] train_aug_config   : {} (disabled)")
+    else:
+        print(f"[INFO] train_aug_config   : {list(train_aug_config.keys())}")
     print(f"[INFO] epochs             : {cfg.epochs}")
     print(f"[INFO] batch_size         : {cfg.batch_size}")
     print(f"[INFO] grad_accum_steps   : {cfg.grad_accum_steps} (effective={eff_batch})")
@@ -1390,12 +1514,22 @@ def main():
         "tile_output_root": str(cfg.tile_output_root) if cfg.tile_enable else None,
         "tile_rebuild": cfg.tile_rebuild if cfg.tile_enable else None,
         "tile_meta": tile_meta,
+        "tile_aug_enable": cfg.aug_enable,
+        "tile_aug_policy": cfg.aug_policy if cfg.aug_enable else None,
+        "tile_aug_train_copies": cfg.aug_train_copies if cfg.aug_enable else 0,
+        "tile_aug_verify_count": cfg.aug_verify_count if cfg.aug_enable else 0,
+        "tile_aug_verify_dir": str(aug_verify_dir) if (cfg.aug_enable and aug_verify_dir is not None) else None,
+        "tile_aug_verify_only": cfg.aug_verify_only,
         "aug_enable": cfg.aug_enable,
         "aug_policy": cfg.aug_policy if cfg.aug_enable else None,
         "aug_train_copies": cfg.aug_train_copies if cfg.aug_enable else 0,
         "aug_verify_count": cfg.aug_verify_count if cfg.aug_enable else 0,
         "aug_verify_dir": str(aug_verify_dir) if (cfg.aug_enable and aug_verify_dir is not None) else None,
         "aug_verify_only": cfg.aug_verify_only,
+        "train_aug_preset": cfg.train_aug_preset,
+        "train_aug_source": train_aug_source,
+        "train_aug_config_json": str(cfg.train_aug_config_json) if cfg.train_aug_config_json is not None else None,
+        "train_aug_config": train_aug_config,
         "wandb_disable": cfg.wandb_disable,
         "wandb_project": cfg.wandb_project,
         "wandb_run": run_name,
@@ -1444,6 +1578,8 @@ def main():
         project=cfg.wandb_project if use_wandb else None,
         run=run_name if use_wandb else None,
     )
+    if train_aug_config is not None:
+        train_kwargs["aug_config"] = train_aug_config
 
     try:
         call_train(model, **train_kwargs)
