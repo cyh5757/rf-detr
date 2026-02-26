@@ -1,17 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-RF-DETR Segmentation Training Script (cell_opti_10) - v4.3
+RF-DETR Segmentation Training Script (cell_opti_10) - v5
 
-v4.2 -> v4.3 변경점:
-- ✅ argparse에 --gradient_checkpointing 추가 (RF-DETR train() 지원)  :contentReference[oaicite:4]{index=4}
-- ✅ resolution을 "태그용"이 아니라 model.train(resolution=...)로 실제 전달  :contentReference[oaicite:5]{index=5}
-- ✅ device / amp(fp16) 옵션 추가 (OOM 완화에 효과 큼)
-- call_train() 필터링 후 실제 전달된 키를 출력하여, 옵션이 버려지는지 즉시 확인 가능
-
-참고:
-- gradient_checkpointing: 메모리 절감(대신 느려짐)  :contentReference[oaicite:6]{index=6}
-- training params: gradient_checkpointing, resolution 등  :contentReference[oaicite:7]{index=7}
+v4.3 -> v5 변경점:
+- backbone freeze + query/decoder/head 중심 파인튜닝 모드 추가
+- tune mode 선택 (--tune-mode: query_only/query_decoder_heads/full)
+- 실제 trainable 파라미터 요약 로그 + run_meta.json 기록
 """
 
 from __future__ import annotations
@@ -29,6 +24,30 @@ from pathlib import Path
 from typing import Optional, Tuple
 
 import torch
+
+
+TUNE_MODE_QUERY_ONLY = "query_only"
+TUNE_MODE_QUERY_DECODER_HEADS = "query_decoder_heads"
+TUNE_MODE_FULL = "full"
+TUNE_MODE_CHOICES = [
+    TUNE_MODE_QUERY_ONLY,
+    TUNE_MODE_QUERY_DECODER_HEADS,
+    TUNE_MODE_FULL,
+]
+
+QUERY_PARAM_KEYWORDS = (
+    "query_feat",
+    "refpoint_embed",
+)
+
+DECODER_HEAD_PARAM_KEYWORDS = (
+    "transformer.decoder",
+    "class_embed",
+    "bbox_embed",
+    "segmentation_head",
+    "transformer.enc_out_class_embed",
+    "transformer.enc_out_bbox_embed",
+)
 
 
 # -----------------------------
@@ -428,6 +447,91 @@ def call_train(model, verbose_filter: bool = True, **kwargs):
 
 
 # -----------------------------
+# 6.5) Fine-tuning policy (freeze/unfreeze)
+# -----------------------------
+def _contains_any(name: str, keywords: tuple[str, ...]) -> bool:
+    return any(k in name for k in keywords)
+
+
+def _resolve_unfreeze_keywords(tune_mode: str) -> tuple[str, ...]:
+    if tune_mode == TUNE_MODE_QUERY_ONLY:
+        return QUERY_PARAM_KEYWORDS
+    if tune_mode == TUNE_MODE_QUERY_DECODER_HEADS:
+        return QUERY_PARAM_KEYWORDS + DECODER_HEAD_PARAM_KEYWORDS
+    if tune_mode == TUNE_MODE_FULL:
+        return tuple()
+    raise ValueError(f"Unsupported tune_mode: {tune_mode}")
+
+
+def apply_finetune_policy(
+    module: torch.nn.Module,
+    tune_mode: str,
+    freeze_backbone: bool = True,
+):
+    total_params = 0
+    trainable_params = 0
+    total_tensors = 0
+    trainable_tensors = 0
+    trainable_names: list[str] = []
+    frozen_names: list[str] = []
+
+    unfreeze_keywords = _resolve_unfreeze_keywords(tune_mode)
+
+    for name, p in module.named_parameters():
+        total_tensors += 1
+        total_params += p.numel()
+
+        if tune_mode == TUNE_MODE_FULL:
+            should_train = True
+        else:
+            should_train = _contains_any(name, unfreeze_keywords)
+
+        if freeze_backbone and "backbone" in name:
+            should_train = False
+
+        p.requires_grad = bool(should_train)
+
+        if p.requires_grad:
+            trainable_tensors += 1
+            trainable_params += p.numel()
+            trainable_names.append(name)
+        else:
+            frozen_names.append(name)
+
+    return {
+        "tune_mode": tune_mode,
+        "freeze_backbone": bool(freeze_backbone),
+        "total_tensors": total_tensors,
+        "trainable_tensors": trainable_tensors,
+        "frozen_tensors": total_tensors - trainable_tensors,
+        "total_params": total_params,
+        "trainable_params": trainable_params,
+        "frozen_params": total_params - trainable_params,
+        "trainable_ratio": (trainable_params / total_params) if total_params > 0 else 0.0,
+        "trainable_name_samples": trainable_names[:30],
+        "frozen_name_samples": frozen_names[:30],
+    }
+
+
+def print_finetune_policy_summary(summary: dict) -> None:
+    print("----------------------------------------------------")
+    print("[FINETUNE POLICY]")
+    print(f"[INFO] tune_mode          : {summary['tune_mode']}")
+    print(f"[INFO] freeze_backbone    : {summary['freeze_backbone']}")
+    print(
+        f"[INFO] trainable tensors  : {summary['trainable_tensors']}/{summary['total_tensors']} "
+        f"(frozen={summary['frozen_tensors']})"
+    )
+    print(
+        f"[INFO] trainable params   : {summary['trainable_params']}/{summary['total_params']} "
+        f"({summary['trainable_ratio'] * 100:.2f}%)"
+    )
+    print(f"[INFO] trainable samples  : {summary['trainable_name_samples'][:12]}")
+    print(f"[INFO] frozen samples     : {summary['frozen_name_samples'][:12]}")
+    print("----------------------------------------------------")
+
+
+# -----------------------------
 # 7) seed 고정
 # -----------------------------
 def set_seed(seed: int):
@@ -482,6 +586,8 @@ class TrainConfig:
 
     num_queries: Optional[int]
     num_select: Optional[int]
+    tune_mode: str
+    freeze_backbone: bool
     partial_load: bool
     pretrained_ckpt: Optional[str]
     pretrain_weights: Optional[str]
@@ -492,7 +598,7 @@ class TrainConfig:
 
 
 def parse_args() -> TrainConfig:
-    p = argparse.ArgumentParser(description="RF-DETR Segmentation training (cell_opti_10) - v4.3")
+    p = argparse.ArgumentParser(description="RF-DETR Segmentation training (cell_opti_10) - v5")
 
     p.add_argument("--data-root", type=str, default="/home/mbd1234/data/Optiresolve_result_20260212/cell_opti_10")
     p.add_argument("--outputs-root", type=str, default="/home/mbd1234/rf-detr/outputs")
@@ -536,6 +642,22 @@ def parse_args() -> TrainConfig:
     # num_queries / num_select / partial-load
     p.add_argument("--num-queries", type=int, default=None, help="DETR queries 수(상한 증가 목적)")
     p.add_argument("--num-select", type=int, default=None, help="PostProcess top-k (최종 출력 상한)")
+    p.add_argument(
+        "--tune-mode",
+        type=str,
+        default=TUNE_MODE_QUERY_DECODER_HEADS,
+        choices=TUNE_MODE_CHOICES,
+        help=(
+            "query_only: query 임베딩만 학습 / "
+            "query_decoder_heads: query+decoder+head 학습(기본) / "
+            "full: 전체 학습"
+        ),
+    )
+    p.add_argument("--freeze-backbone", dest="freeze_backbone", action="store_true",
+                   help="backbone 파라미터를 강제로 freeze")
+    p.add_argument("--no-freeze-backbone", dest="freeze_backbone", action="store_false",
+                   help="backbone freeze를 비활성화")
+    p.set_defaults(freeze_backbone=True)
     p.add_argument("--partial-load", action="store_true", help="shape 동일한 pretrained weight만 부분 로딩")
     p.add_argument("--pretrained-ckpt", type=str, default=None, help="부분 로딩할 pretrained ckpt 경로 또는 hosted key")
 
@@ -577,6 +699,8 @@ def parse_args() -> TrainConfig:
         wandb_disable=bool(a.wandb_disable),
         num_queries=a.num_queries,
         num_select=a.num_select,
+        tune_mode=str(a.tune_mode),
+        freeze_backbone=bool(a.freeze_backbone),
         partial_load=bool(a.partial_load),
         pretrained_ckpt=a.pretrained_ckpt,
         pretrain_weights=a.pretrain_weights,
@@ -630,6 +754,14 @@ def main():
     dataset_tag = cfg.data_root.name
     model_tag = f"Seg{cfg.size}_{cfg.resolution}"
     model_tag = f"{model_tag}__Q{effective_num_queries}__S{effective_num_select}__G{cfg.group_detr}"
+    tune_mode_short = {
+        TUNE_MODE_QUERY_ONLY: "QOnly",
+        TUNE_MODE_QUERY_DECODER_HEADS: "QDecHead",
+        TUNE_MODE_FULL: "Full",
+    }[cfg.tune_mode]
+    model_tag = f"{model_tag}__FT{tune_mode_short}"
+    if cfg.freeze_backbone:
+        model_tag = f"{model_tag}__BBFrozen"
     if cfg.gradient_checkpointing:
         model_tag = f"{model_tag}__GCkpt"
     if cfg.amp:
@@ -644,7 +776,7 @@ def main():
     eff_batch = cfg.batch_size * cfg.grad_accum_steps
 
     print("====================================================")
-    print("[INFO] RF-DETR Seg Training Start (v4.3)")
+    print("[INFO] RF-DETR Seg Training Start (v5)")
     print(f"[INFO] data_root               : {cfg.data_root}")
     print(f"[INFO] train_ann               : {train_ann}")
     print(f"[INFO] val_ann                 : {val_ann}")
@@ -658,6 +790,8 @@ def main():
     print(f"[INFO] num_select  (requested) : {cfg.num_select}")
     print(f"[INFO] num_select  (effective) : {effective_num_select} (default={default_ns})")
     print(f"[INFO] group_detr              : {cfg.group_detr}")
+    print(f"[INFO] tune_mode               : {cfg.tune_mode}")
+    print(f"[INFO] freeze_backbone         : {cfg.freeze_backbone}")
     print(f"[INFO] epochs                  : {cfg.epochs}")
     print(f"[INFO] batch_size              : {cfg.batch_size}")
     print(f"[INFO] grad_accum_steps        : {cfg.grad_accum_steps} (effective={eff_batch})")
@@ -700,6 +834,8 @@ def main():
         "num_select_requested": cfg.num_select,
         "num_select_effective": effective_num_select,
         "group_detr": cfg.group_detr,
+        "tune_mode": cfg.tune_mode,
+        "freeze_backbone": cfg.freeze_backbone,
         "epochs": cfg.epochs,
         "batch_size": cfg.batch_size,
         "grad_accum_steps": cfg.grad_accum_steps,
@@ -825,9 +961,20 @@ def main():
 
     try:
         # partial load: 호환 텐서만 주입
+        torch_module = find_inner_torch_module(model)
+
         if cfg.partial_load:
-            torch_module = find_inner_torch_module(model)
             load_compatible_weights_into_torch_module(torch_module, cfg.pretrained_ckpt, verbose=True)
+
+        # v5: finetune policy 적용 (freeze/unfreeze)
+        finetune_summary = apply_finetune_policy(
+            torch_module,
+            tune_mode=cfg.tune_mode,
+            freeze_backbone=cfg.freeze_backbone,
+        )
+        print_finetune_policy_summary(finetune_summary)
+        run_meta["finetune_policy"] = finetune_summary
+        write_run_meta(output_dir, run_meta)
 
         # 학습 호출
         call_train(

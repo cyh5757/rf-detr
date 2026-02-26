@@ -1,17 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-RF-DETR Segmentation Training Script (cell_opti_10) - v4.3
+RF-DETR Segmentation Training Script (cell_opti_10) - v7 (strict query-only + OOM controls)
 
-v4.2 -> v4.3 변경점:
-- ✅ argparse에 --gradient_checkpointing 추가 (RF-DETR train() 지원)  :contentReference[oaicite:4]{index=4}
-- ✅ resolution을 "태그용"이 아니라 model.train(resolution=...)로 실제 전달  :contentReference[oaicite:5]{index=5}
-- ✅ device / amp(fp16) 옵션 추가 (OOM 완화에 효과 큼)
-- call_train() 필터링 후 실제 전달된 키를 출력하여, 옵션이 버려지는지 즉시 확인 가능
-
-참고:
-- gradient_checkpointing: 메모리 절감(대신 느려짐)  :contentReference[oaicite:6]{index=6}
-- training params: gradient_checkpointing, resolution 등  :contentReference[oaicite:7]{index=7}
+핵심 정책:
+- 항상 전체 파라미터를 freeze
+- query slot 관련 weight만 학습:
+  - refpoint_embed.weight
+  - query_feat.weight
 """
 
 from __future__ import annotations
@@ -421,7 +417,6 @@ def call_train(model, verbose_filter: bool = True, **kwargs):
         print("[TRAIN ARGS] Allowed keys count:", len(allowed))
         print("[TRAIN ARGS] Passed keys:", sorted(filtered.keys()))
         if dropped:
-            # 일부러 보여줌: 지금까지 "resolution 태그만"이거나 옵션이 버려진 경우를 잡기 위함
             print("[TRAIN ARGS][WARN] Dropped keys (not in SegmentationTrainConfig):", sorted(dropped.keys()))
 
     return model.train(**filtered)
@@ -448,6 +443,56 @@ def set_seed(seed: int):
 def write_run_meta(output_dir: Path, meta: dict) -> None:
     p = output_dir / "run_meta.json"
     p.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+# -----------------------------
+# 8.5) Strict query-only freeze policy
+# -----------------------------
+def set_requires_grad(module: torch.nn.Module, flag: bool) -> None:
+    for p in module.parameters():
+        p.requires_grad = flag
+
+
+def unfreeze_exact_params(module: torch.nn.Module, param_names: set[str]) -> list[str]:
+    hits: list[str] = []
+    for name, p in module.named_parameters():
+        if name in param_names:
+            p.requires_grad = True
+            hits.append(name)
+    return hits
+
+
+def report_trainable(module: torch.nn.Module) -> None:
+    total = 0
+    trainable = 0
+    for _, p in module.named_parameters():
+        n = p.numel()
+        total += n
+        if p.requires_grad:
+            trainable += n
+    pct = (trainable / total * 100.0) if total > 0 else 0.0
+    print(f"[PARAMS] trainable {trainable:,} / total {total:,} ({pct:.4f}%)")
+
+
+def apply_freeze_query_only(torch_module: torch.nn.Module) -> None:
+    # 1) all freeze
+    set_requires_grad(torch_module, False)
+
+    # 2) query-slot weights only
+    target_params = {
+        "refpoint_embed.weight",
+        "query_feat.weight",
+    }
+    hits = unfreeze_exact_params(torch_module, target_params)
+    missing = sorted(target_params - set(hits))
+    print(f"[QUERY-ONLY] trainable params: {hits}")
+    if missing:
+        raise RuntimeError(
+            f"Required query parameters not found: {missing}. "
+            "Model parameter names may differ in this RF-DETR version."
+        )
+
+    report_trainable(torch_module)
 
 
 # -----------------------------
@@ -489,10 +534,16 @@ class TrainConfig:
     dry_run: bool
 
     alloc_expandable_segments: bool
+    profile_vram: bool
+    matcher_chunk_size: int
+    eval_interval: int
+    oom_safe: bool
+
+    strict_query_only: bool
 
 
 def parse_args() -> TrainConfig:
-    p = argparse.ArgumentParser(description="RF-DETR Segmentation training (cell_opti_10) - v4.3")
+    p = argparse.ArgumentParser(description="RF-DETR Segmentation training (cell_opti_10) - v7 strict query-only + OOM controls")
 
     p.add_argument("--data-root", type=str, default="/home/mbd1234/data/Optiresolve_result_20260212/cell_opti_10")
     p.add_argument("--outputs-root", type=str, default="/home/mbd1234/rf-detr/outputs")
@@ -546,8 +597,30 @@ def parse_args() -> TrainConfig:
                    help="checkpoint(s) to inspect query-slot capacity and exit")
     p.add_argument("--dry-run", action="store_true",
                    help="print resolved training plan and exit without training")
+    p.add_argument("--profile-vram", action="store_true",
+                   help="Log peak CUDA VRAM usage for evaluation phases.")
+    p.add_argument("--matcher-chunk-size", type=int, default=0,
+                   help="Chunk size for matcher cost rows. 0 disables chunking.")
+    p.add_argument("--eval-interval", type=int, default=1,
+                   help="Run validation every N epochs (always runs on final epoch).")
+    p.add_argument("--oom-safe", action="store_true",
+                   help="Apply OOM-safe defaults without changing num_queries.")
 
     a = p.parse_args()
+
+    if a.oom_safe:
+        if not a.amp:
+            a.amp = True
+        if not a.gradient_checkpointing:
+            a.gradient_checkpointing = True
+        if not a.alloc_expandable_segments:
+            a.alloc_expandable_segments = True
+        if int(a.num_workers) > 0:
+            a.num_workers = 0
+        if int(a.matcher_chunk_size) <= 0:
+            a.matcher_chunk_size = 128
+        if int(a.eval_interval) <= 1:
+            a.eval_interval = 2
 
     size = a.size.upper()
     resolution = a.resolution if a.resolution is not None else SIZE_TO_RESOLUTION[size]
@@ -583,6 +656,11 @@ def parse_args() -> TrainConfig:
         inspect_ckpts=a.inspect_ckpts,
         dry_run=bool(a.dry_run),
         alloc_expandable_segments=bool(a.alloc_expandable_segments),
+        profile_vram=bool(a.profile_vram),
+        matcher_chunk_size=int(a.matcher_chunk_size),
+        eval_interval=int(a.eval_interval),
+        oom_safe=bool(a.oom_safe),
+        strict_query_only=True,
     )
 
 
@@ -596,7 +674,6 @@ def main():
         print_query_capacity_report(cfg.inspect_ckpts, group_detr=int(cfg.group_detr))
         return
 
-    # 파편화 완화 환경변수(원할 때만)
     if cfg.alloc_expandable_segments:
         os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
         print("[ENV] PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True")
@@ -616,7 +693,6 @@ def main():
     if cfg.num_select is not None:
         effective_num_select = int(cfg.num_select)
     else:
-        # If num_queries is overridden, keep postprocess cap aligned unless user explicitly sets num_select.
         effective_num_select = effective_num_queries if cfg.num_queries is not None else default_ns
 
     if effective_num_queries <= 0:
@@ -627,9 +703,18 @@ def main():
         raise ValueError(
             f"num_select({effective_num_select}) cannot exceed num_queries({effective_num_queries})."
         )
+
     dataset_tag = cfg.data_root.name
     model_tag = f"Seg{cfg.size}_{cfg.resolution}"
     model_tag = f"{model_tag}__Q{effective_num_queries}__S{effective_num_select}__G{cfg.group_detr}"
+    if cfg.strict_query_only:
+        model_tag = f"{model_tag}__StrictQOnly"
+    if cfg.matcher_chunk_size > 0:
+        model_tag = f"{model_tag}__MChunk{cfg.matcher_chunk_size}"
+    if cfg.eval_interval > 1:
+        model_tag = f"{model_tag}__EvalI{cfg.eval_interval}"
+    if cfg.oom_safe:
+        model_tag = f"{model_tag}__OOMSafe"
     if cfg.gradient_checkpointing:
         model_tag = f"{model_tag}__GCkpt"
     if cfg.amp:
@@ -644,7 +729,7 @@ def main():
     eff_batch = cfg.batch_size * cfg.grad_accum_steps
 
     print("====================================================")
-    print("[INFO] RF-DETR Seg Training Start (v4.3)")
+    print("[INFO] RF-DETR Seg Training Start (v7 strict query-only + OOM controls)")
     print(f"[INFO] data_root               : {cfg.data_root}")
     print(f"[INFO] train_ann               : {train_ann}")
     print(f"[INFO] val_ann                 : {val_ann}")
@@ -666,6 +751,11 @@ def main():
     print(f"[INFO] device                  : {cfg.device}")
     print(f"[INFO] amp                     : {cfg.amp}")
     print(f"[INFO] gradient_checkpointing  : {cfg.gradient_checkpointing}")
+    print(f"[INFO] profile_vram            : {cfg.profile_vram}")
+    print(f"[INFO] matcher_chunk_size      : {cfg.matcher_chunk_size}")
+    print(f"[INFO] eval_interval           : {cfg.eval_interval}")
+    print(f"[INFO] oom_safe               : {cfg.oom_safe}")
+    print(f"[INFO] strict_query_only       : {cfg.strict_query_only}")
     print(f"[INFO] early_stopping          : {cfg.early_stopping}")
     print(f"[INFO] num_classes             : {cfg.num_classes}")
     print(f"[INFO] class_names             : {cfg.class_names}")
@@ -685,7 +775,6 @@ def main():
     else:
         print("[WARNING] CUDA is not available. Training will run on CPU.")
 
-    # run_meta.json 저장
     run_meta = {
         "timestamp": datetime.now().isoformat(timespec="seconds"),
         "data_root": str(cfg.data_root),
@@ -709,6 +798,10 @@ def main():
         "device": cfg.device,
         "amp": cfg.amp,
         "gradient_checkpointing": cfg.gradient_checkpointing,
+        "profile_vram": cfg.profile_vram,
+        "matcher_chunk_size": cfg.matcher_chunk_size,
+        "eval_interval": cfg.eval_interval,
+        "oom_safe": cfg.oom_safe,
         "early_stopping": cfg.early_stopping,
         "num_classes": cfg.num_classes,
         "class_names": cfg.class_names,
@@ -720,6 +813,7 @@ def main():
         "wandb_disable": cfg.wandb_disable,
         "wandb_project": cfg.wandb_project,
         "wandb_run": run_name,
+        "strict_query_only": cfg.strict_query_only,
         "argv": sys.argv,
         "python": sys.version,
         "cuda_available": bool(torch.cuda.is_available()),
@@ -727,7 +821,6 @@ def main():
     }
     write_run_meta(output_dir, run_meta)
 
-    # wandb 사용 가능 여부 점검
     use_wandb = not cfg.wandb_disable
     if use_wandb:
         try:
@@ -738,7 +831,6 @@ def main():
         if not use_wandb:
             print("[WARN] wandb 사용 불가. wandb를 끕니다. 로그만 로컬에 남습니다.")
 
-    # weights / initialization mode
     if cfg.partial_load and not cfg.pretrained_ckpt:
         raise ValueError("--partial-load를 켰으면 --pretrained-ckpt가 필요합니다.")
 
@@ -764,7 +856,6 @@ def main():
             init_mode = "scratch"
             capacity_ckpt_path = None
         else:
-            # None means: use wrapper default pretrained checkpoint for this size.
             pretrain_w = ensure_pretrained_weights(cfg.pretrain_weights, redownload=False)
             init_mode = "pretrained"
             capacity_ckpt_path = pretrain_w if pretrain_w is not None else SIZE_TO_PRETRAIN_WEIGHT_NAME[cfg.size]
@@ -775,7 +866,6 @@ def main():
     if cfg.partial_load:
         print(f"[INFO] partial_load_ckpt(resolved): {cfg.pretrained_ckpt}")
 
-    # Capacity check for checkpoint-backed initialization
     desired_slots = int(effective_num_queries) * int(cfg.group_detr)
     inferred_capacity = None
     if capacity_ckpt_path:
@@ -811,7 +901,6 @@ def main():
         print("[INFO] --dry-run set: exiting before model build/train.")
         return
 
-    # 모델 생성
     model = build_model(
         cfg.size,
         cfg.num_classes,
@@ -829,6 +918,12 @@ def main():
             torch_module = find_inner_torch_module(model)
             load_compatible_weights_into_torch_module(torch_module, cfg.pretrained_ckpt, verbose=True)
 
+        # --- Strict query-only tuning ---
+        torch_module = find_inner_torch_module(model)
+        if cfg.strict_query_only:
+            print("[MODE] strict-query-only enabled")
+            apply_freeze_query_only(torch_module=torch_module)
+
         # 학습 호출
         call_train(
             model,
@@ -843,6 +938,9 @@ def main():
             resolution=cfg.resolution,
             gradient_checkpointing=cfg.gradient_checkpointing,
             amp=cfg.amp,
+            profile_vram=cfg.profile_vram,
+            matcher_chunk_size=cfg.matcher_chunk_size,
+            eval_interval=cfg.eval_interval,
             num_select=effective_num_select,
             group_detr=cfg.group_detr,
             early_stopping=cfg.early_stopping,

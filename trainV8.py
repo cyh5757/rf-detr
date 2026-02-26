@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-RF-DETR Segmentation Training Script (cell_opti_10)
+RF-DETR Segmentation Training Script (cell_opti_10, trainV8)
 
 - 모델 사이즈(N/S/M/L/XL/2XL)에 따른 권장 resolution 자동 적용
-- rfdetr의 SegmentationTrainConfig(model_fields) 기반으로 train()에 전달 가능한 인자만 필터링
+- resolution override를 실제 학습 입력 해상도로 적용
+- amp / gradient_checkpointing 옵션 추가
+- rfdetr의 SegmentationTrainConfig + ModelConfig 기반으로 train() 인자 필터링
 - COCO 레이아웃 + segmentation sanity check 옵션
 - output_dir: timestamp + dataset_tag + model_tag 포함 (요청사항)
 - wandb: 스크립트에서 init하지 않음. model.train(wandb=..., project=..., run=...) 로 전달하면
@@ -14,19 +16,17 @@ RF-DETR Segmentation Training Script (cell_opti_10)
 
 실행 예:
   cd /home/mbd1234/rf-detr
-  python train_seg_cell_opti_v3.py --size M --epochs 200 --batch-size 2 --grad-accum-steps 2 --sanity-check
+  python trainV8.py --size M --resolution 480 --epochs 200 --batch-size 2 --grad-accum-steps 2 --sanity-check
 
 메모리 부족 시:
-  python train_seg_cell_opti_v3.py --size S --batch-size 1 --grad-accum-steps 4
+  python trainV8.py --size S --batch-size 1 --grad-accum-steps 4 --gradient-checkpointing --amp
 """
 
 from __future__ import annotations
 
 import argparse
 import gc
-import inspect
 import json
-import os
 import random
 import sys
 import weakref
@@ -49,6 +49,49 @@ SIZE_TO_RESOLUTION = {
     "XL": 624,
     "2XL": 768,
 }
+
+SIZE_TO_PATCH_SIZE = {
+    "N": 12,
+    "S": 12,
+    "M": 12,
+    "L": 12,
+    "XL": 12,
+    "2XL": 12,
+}
+
+SIZE_TO_NUM_WINDOWS = {
+    "N": 1,
+    "S": 2,
+    "M": 2,
+    "L": 2,
+    "XL": 2,
+    "2XL": 2,
+}
+
+
+def validate_resolution(size: str, resolution: int) -> tuple[int, int, int]:
+    """선택한 모델 크기에 대해 해상도 배수 조건을 확인하고 pos-encoding size를 반환."""
+    patch_size = SIZE_TO_PATCH_SIZE[size]
+    num_windows = SIZE_TO_NUM_WINDOWS[size]
+    block_size = patch_size * num_windows
+
+    if resolution <= 0:
+        raise ValueError(f"resolution은 양수여야 함: {resolution}")
+    if resolution % patch_size != 0:
+        lower = patch_size * (resolution // patch_size)
+        upper = lower + patch_size
+        raise ValueError(
+            f"resolution={resolution}는 patch_size={patch_size}의 배수여야 함 "
+            f"(예: {lower} 또는 {upper})."
+        )
+    if resolution % block_size != 0:
+        lower = block_size * (resolution // block_size)
+        upper = lower + block_size
+        raise ValueError(
+            f"resolution={resolution}는 size={size}에서 patch_size({patch_size})*num_windows({num_windows})="
+            f"{block_size}의 배수여야 함 (예: {lower} 또는 {upper})."
+        )
+    return patch_size, num_windows, resolution // patch_size
 
 
 # -----------------------------
@@ -168,10 +211,18 @@ def quick_segmentation_sanity_check(coco_json: Path, sample_n: int = 100) -> Non
 # -----------------------------
 # 5) 모델 생성 (rfdetr.detr / rfdetr.config 정의된 클래스명만 사용)
 # -----------------------------
-def build_model(size: str, num_classes: int, class_names: list[str]):
+def build_model(
+    size: str,
+    num_classes: int,
+    class_names: list[str],
+    resolution: int,
+    amp: bool,
+    gradient_checkpointing: bool,
+):
     import rfdetr  # 로컬 import
 
     size = size.upper()
+    patch_size, _, positional_encoding_size = validate_resolution(size, resolution)
 
     # (detr.py 기준) 세그멘테이션 클래스명
     candidates_by_size = {
@@ -195,15 +246,15 @@ def build_model(size: str, num_classes: int, class_names: list[str]):
             continue
 
         try:
-            sig = inspect.signature(cls)
-            kwargs = {}
-            if "num_classes" in sig.parameters:
-                kwargs["num_classes"] = num_classes
-            if "class_names" in sig.parameters:
-                kwargs["class_names"] = class_names
-            elif "class_name" in sig.parameters:
-                kwargs["class_name"] = class_names
-
+            kwargs = {
+                "num_classes": num_classes,
+                "class_names": class_names,
+                "resolution": int(resolution),
+                "amp": bool(amp),
+                "gradient_checkpointing": bool(gradient_checkpointing),
+                "positional_encoding_size": int(positional_encoding_size),
+                "patch_size": int(patch_size),
+            }
             return cls(**kwargs)
         except Exception as e:
             last_err = e
@@ -214,20 +265,22 @@ def build_model(size: str, num_classes: int, class_names: list[str]):
 
 
 # -----------------------------
-# 6) train() 호출: SegmentationTrainConfig(model_fields) 키만 전달
+# 6) train() 호출: SegmentationTrainConfig + ModelConfig 키 전달
 # -----------------------------
 def call_train(model, **kwargs):
     """
     rfdetr: model.train(**kwargs) -> get_train_config(**kwargs) -> SegmentationTrainConfig.
 
-    - SegmentationTrainConfig에 없는 키는 전달하지 않음.
-    - (주의) resolution, train_ann_file, val_ann_file은 여기서는 전달하지 않음.
-      (네 코드 주석처럼, 해상도는 모델 크기별 config에 고정되어 있다고 가정)
+    - SegmentationTrainConfig에 있는 학습 키 + ModelConfig에 있는 모델 키만 전달.
+    - 이 방식으로 resolution/amp/gradient_checkpointing도 실제 전달 가능.
     """
-    from rfdetr.config import SegmentationTrainConfig
+    from rfdetr.config import ModelConfig, SegmentationTrainConfig
 
-    allowed = set(SegmentationTrainConfig.model_fields.keys())
+    allowed = set(SegmentationTrainConfig.model_fields.keys()) | set(ModelConfig.model_fields.keys())
     filtered = {k: v for k, v in kwargs.items() if k in allowed and v is not None}
+    dropped = [k for k, v in kwargs.items() if k not in allowed and v is not None]
+    if dropped:
+        print(f"[WARN] Dropped unsupported train kwargs: {sorted(dropped)}")
     return model.train(**filtered)
 
 
@@ -270,6 +323,8 @@ class TrainConfig:
     num_workers: int
     pad_to_square: bool
     lr: float
+    amp: bool
+    gradient_checkpointing: bool
     num_classes: int
     class_names: list[str]
     early_stopping: bool
@@ -298,7 +353,12 @@ def parse_args() -> TrainConfig:
     )
 
     p.add_argument("--size", type=str, default="2XL", choices=list(SIZE_TO_RESOLUTION.keys()))
-    p.add_argument("--resolution", type=int, default=None, help="미지정 시 size에 따른 권장값 자동 적용(태깅용)")
+    p.add_argument(
+        "--resolution",
+        type=int,
+        default=None,
+        help="미지정 시 size 권장값 자동 적용. 지정 시 실제 학습 해상도로 적용",
+    )
 
     p.add_argument("--epochs", type=int, default=150)
     p.add_argument("--batch-size", type=int, default=2)
@@ -309,6 +369,15 @@ def parse_args() -> TrainConfig:
     p.add_argument("--no-pad-to-square", dest="pad_to_square", action="store_false",
                    help="기존 동작(정사각 강제 리사이즈, 왜곡 가능)")
     p.add_argument("--lr", type=float, default=5e-5)
+    p.add_argument("--amp", dest="amp", action="store_true", default=True, help="AMP mixed precision 사용")
+    p.add_argument("--no-amp", dest="amp", action="store_false", help="AMP 비활성화")
+    p.add_argument(
+        "--gradient-checkpointing",
+        "--gradient_checkpointing",
+        dest="gradient_checkpointing",
+        action="store_true",
+        help="Gradient checkpointing 활성화 (메모리 절감, 속도 저하 가능)",
+    )
 
     p.add_argument("--num-classes", type=int, default=2)
     p.add_argument("--class-names", type=str, nargs="+", default=["background", "cell"])
@@ -340,6 +409,8 @@ def parse_args() -> TrainConfig:
         num_workers=int(a.num_workers),
         pad_to_square=bool(a.pad_to_square),
         lr=a.lr,
+        amp=bool(a.amp),
+        gradient_checkpointing=bool(a.gradient_checkpointing),
         num_classes=a.num_classes,
         class_names=a.class_names,
         early_stopping=bool(a.early_stopping),
@@ -358,6 +429,7 @@ def parse_args() -> TrainConfig:
 def main():
     cfg = parse_args()
     set_seed(cfg.seed)
+    patch_size, num_windows, positional_encoding_size = validate_resolution(cfg.size, cfg.resolution)
 
     train_ann, val_ann = assert_coco_layout(cfg.data_root)
     if cfg.sanity_check:
@@ -365,6 +437,10 @@ def main():
 
     dataset_tag = cfg.data_root.name  # e.g. cell_opti_10
     model_tag = f"Seg{cfg.size}_{cfg.resolution}"
+    if cfg.gradient_checkpointing:
+        model_tag += "__GC"
+    if cfg.amp:
+        model_tag += "__AMP"
     prefix = f"{dataset_tag}__{model_tag}"
 
     # outputs: <outputs_root>/<dataset_tag>/<timestamp__prefix>
@@ -394,6 +470,11 @@ def main():
     print(f"[INFO] num_workers       : {cfg.num_workers}")
     print(f"[INFO] pad_to_square     : {cfg.pad_to_square}")
     print(f"[INFO] lr                : {cfg.lr}")
+    print(f"[INFO] amp               : {cfg.amp}")
+    print(f"[INFO] gradient_ckpt     : {cfg.gradient_checkpointing}")
+    print(f"[INFO] patch_size        : {patch_size}")
+    print(f"[INFO] num_windows       : {num_windows}")
+    print(f"[INFO] pos_enc_size      : {positional_encoding_size}")
     print(f"[INFO] early_stopping    : {cfg.early_stopping}")
     print(f"[INFO] num_classes       : {cfg.num_classes}")
     print(f"[INFO] class_names       : {cfg.class_names}")
@@ -422,7 +503,11 @@ def main():
         "output_dir": str(output_dir),
         "dataset_tag": dataset_tag,
         "model_size": cfg.size,
-        "resolution_tag": cfg.resolution,  # 태깅용 (모델 config에 실제로 고정돼있다고 가정)
+        "resolution": cfg.resolution,
+        "resolution_source": "default" if cfg.resolution == SIZE_TO_RESOLUTION[cfg.size] else "override",
+        "patch_size": patch_size,
+        "num_windows": num_windows,
+        "positional_encoding_size": positional_encoding_size,
         "epochs": cfg.epochs,
         "batch_size": cfg.batch_size,
         "grad_accum_steps": cfg.grad_accum_steps,
@@ -430,6 +515,8 @@ def main():
         "pad_to_square": cfg.pad_to_square,
         "effective_batch": eff_batch,
         "lr": cfg.lr,
+        "amp": cfg.amp,
+        "gradient_checkpointing": cfg.gradient_checkpointing,
         "early_stopping": cfg.early_stopping,
         "num_classes": cfg.num_classes,
         "class_names": cfg.class_names,
@@ -458,7 +545,14 @@ def main():
             print("       해결: pip install wandb 또는 프로젝트 내 wandb.py 파일 제거 후 재실행.")
 
     # 모델 생성
-    model = build_model(cfg.size, cfg.num_classes, cfg.class_names)
+    model = build_model(
+        cfg.size,
+        cfg.num_classes,
+        cfg.class_names,
+        resolution=cfg.resolution,
+        amp=cfg.amp,
+        gradient_checkpointing=cfg.gradient_checkpointing,
+    )
 
     train_kwargs = dict(
         dataset_dir=str(cfg.data_root),
@@ -469,6 +563,9 @@ def main():
         num_workers=cfg.num_workers,
         pad_to_square=cfg.pad_to_square,
         lr=cfg.lr,
+        resolution=cfg.resolution,
+        amp=cfg.amp,
+        gradient_checkpointing=cfg.gradient_checkpointing,
         early_stopping=cfg.early_stopping,
         resume=cfg.resume,
         wandb=use_wandb,
@@ -477,7 +574,7 @@ def main():
     )
 
     try:
-        # 학습: SegmentationTrainConfig에 있는 키만 전달
+        # 학습: SegmentationTrainConfig + ModelConfig 키만 전달
         call_train(model, **train_kwargs)
     except RuntimeError as e:
         if "DataLoader worker" in str(e) and train_kwargs["num_workers"] > 0:

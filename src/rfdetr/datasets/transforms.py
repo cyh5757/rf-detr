@@ -277,6 +277,37 @@ class SquareResize(object):
         return rescaled_img, target
 
 
+class SquarePadResize(object):
+    """
+    Preserve aspect ratio by resizing the longer side to `size`,
+    then pad right/bottom to make a square canvas.
+    """
+    def __init__(self, sizes: List[int]) -> None:
+        assert isinstance(sizes, (list, tuple))
+        self.sizes = sizes
+
+    def __call__(self, img: PIL.Image.Image, target: Optional[Dict[str, Any]] = None) -> Tuple[PIL.Image.Image, Optional[Dict[str, Any]]]:
+        size = random.choice(self.sizes)
+        src_w, src_h = img.size
+
+        if src_w <= 0 or src_h <= 0:
+            raise ValueError(f"Invalid image size for SquarePadResize: {(src_w, src_h)}")
+
+        scale = min(size / float(src_w), size / float(src_h))
+        new_w = max(1, min(size, int(round(src_w * scale))))
+        new_h = max(1, min(size, int(round(src_h * scale))))
+
+        # `resize` tuple input is interpreted as (w, h) in this module.
+        resized_img, target = resize(img, target, (new_w, new_h))
+
+        pad_w = size - new_w
+        pad_h = size - new_h
+        if pad_w == 0 and pad_h == 0:
+            return resized_img, target
+
+        return pad(resized_img, target, (pad_w, pad_h))
+
+
 class RandomPad(object):
     def __init__(self, max_pad: int) -> None:
         self.max_pad = max_pad
