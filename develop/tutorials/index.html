@@ -12,8 +12,10 @@
         <meta name="author" content="Roboflow">
       
       
-        <link rel="canonical" href="https://roboflow.github.io/rf-detr/develop/TRAIN_SEG_CELL_OPTI/">
+        <link rel="canonical" href="https://rfdetr.roboflow.com/develop/tutorials/">
       
+      
+        <link rel="prev" href="../reference/segmentation_train_config/">
       
       
       
@@ -25,7 +27,7 @@
     
     
       
-        <title>RF-DETR 세그멘테이션 학습 (cell_opti_10) - RF-DETR</title>
+        <title>Tutorials - RF-DETR</title>
       
     
     
@@ -70,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rf-detr-cell_opti_10" class="md-skip">
+        <a href="#tutorials" class="md-skip">
           Skip to content
         </a>
       
@@ -138,7 +140,7 @@
 
             </a>
             
-              RF-DETR 세그멘테이션 학습 (cell_opti_10)
+              Tutorials
             
           </span>
         </div>
@@ -361,6 +363,27 @@
   
   
   
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorials
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
   
     <li class="md-tabs__item">
       <a href="https://github.com/roboflow/rf-detr/releases" class="md-tabs__link">
@@ -393,7 +416,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -641,6 +666,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learn/pretrained/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pretrained Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -800,6 +853,62 @@
     
   
     Advanced Training
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learn/train/augmentations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Augmentations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learn/train/loggers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training Loggers
   
 
     
@@ -1659,6 +1768,43 @@
       
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
   
   
     <li class="md-nav__item">
@@ -1690,7 +1836,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -1701,75 +1849,6 @@
   
     
   
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 데이터 형식
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. 환경
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 학습 실행
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. 학습 실행">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        옵션
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 학습 후 추론
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1783,119 +1862,76 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
   
 
 
-<h1 id="rf-detr-cell_opti_10">RF-DETR 세그멘테이션 학습 (cell_opti_10)<a class="headerlink" href="#rf-detr-cell_opti_10" title="Permanent link">&para;</a></h1>
-<p><code>data/Optiresolve_result_20260212/cell_opti_10</code> 데이터로 인스턴스 세그멘테이션 모델을 학습하는 방법입니다.</p>
-<h2 id="1">1. 데이터 형식<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h1 id="tutorials">Tutorials<a class="headerlink" href="#tutorials" title="Permanent link">&para;</a></h1>
+<p>Use the resources below to learn how to train, build with, and deploy RF-DETR models both in the cloud and on your own hardware.</p>
+<div class="grid cards">
 <ul>
-<li><strong>COCO</strong> 형식이어야 합니다.</li>
-<li>디렉터리 구조:</li>
-<li><code>train/</code> — <code>_annotations.coco.json</code> + 이미지</li>
-<li><code>valid/</code> — <code>_annotations.coco.json</code> + 이미지</li>
-<li>(선택) <code>test/</code></li>
-<li><strong>세그멘테이션 학습</strong>을 위해 각 어노테이션에 <code>segmentation</code> 필드(폴리곤 좌표)가 필요합니다.<br />
-  현재 데이터에는 이미 포함되어 있습니다.</li>
+<li>
+<p><strong>SOTA Instance Segmentation with RF-DETR Seg (Preview) [October 2025]</strong></p>
+<hr />
+<p><img alt="" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/10/rfdetr-seg.png" /></p>
+<p>Read more about the RF-DETR Segmentation architecture and how to train an RF-DETR Seg (Preview) model.</p>
+<p><a href="https://blog.roboflow.com/rf-detr-segmentation-preview/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Learn more</a></p>
+</li>
+<li>
+<p><strong>Announcing RF-DETR Nano, Small, and Medium [July 2025]</strong></p>
+<hr />
+<p><img alt="" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/07/img-blog-rf-detr-1.png" /></p>
+<p>Read more about the state-of-the-art RF-DETR Nano, Small, and Medium models we released in July 2025.</p>
+<p><a href="https://blog.roboflow.com/rf-detr-nano-small-medium/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Learn more</a></p>
+</li>
+<li>
+<p><strong>RF-DETR: How to Train SOTA for Object Detection on a Custom Dataset [video]</strong></p>
+<hr />
+<p><img alt="" src="https://i.ytimg.com/vi/-OvpdLAElFA/maxresdefault.jpg" /></p>
+<p>Learn how to train an RF-DETR model on a custom dataset.</p>
+<p><a href="https://www.youtube.com/watch?v=-OvpdLAElFA"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Watch the video</a></p>
+</li>
+<li>
+<p><strong>How to Train RF-DETR on a Custom Dataset [article]</strong></p>
+<hr />
+<p><img alt="" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/03/img-blog-how-to-send-slack-notification-workflows-v4-1.png" /></p>
+<p>Learn how to train an RF-DETR model on a custom dataset.</p>
+<p><a href="https://blog.roboflow.com/train-rf-detr-on-a-custom-dataset/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Read the guide</a></p>
+</li>
+<li>
+<p><strong>Deploy RF-DETR on iOS [tutorial &amp; example application]</strong></p>
+<hr />
+<p><img alt="" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/07/img-blog-deep-learning-solves-frustrations--5--min.png" /></p>
+<p>Read this guide to learn how to run RF-DETR models on an iPhone using the Roboflow iOS SDK.</p>
+<p><a href="https://blog.roboflow.com/ios-rf-detr-nano/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Get started</a></p>
+</li>
+<li>
+<p><strong>How to Deploy RF-DETR to an NVIDIA Jetson [article]</strong></p>
+<hr />
+<p><img alt="" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/06/inst-3-.png" /></p>
+<p>Learn how to deploy an RF-DETR model to an NVIDIA Jetson using Roboflow Inference.</p>
+<p><a href="https://blog.roboflow.com/how-to-deploy-rf-detr-to-an-nvidia-jetson/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Read the tutorial</a></p>
+</li>
+<li>
+<p><strong>Train and Deploy RF-DETR Models with Roboflow</strong></p>
+<hr />
+<p><img alt="" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/03/img-blog-nycerebro-2.png" /></p>
+<p>Learn how to train RF-DETR models in the cloud with Roboflow and deploy your models on your own hardware with Roboflow Inference and Workflows.</p>
+<p><a href="https://blog.roboflow.com/train-deploy-rf-detr/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Get started</a></p>
+</li>
+<li>
+<p><strong>RF-DETR: A SOTA Real-Time Object Detection Model</strong></p>
+<hr />
+<p><img alt="" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/03/img-blog-nycerebro--2--min.png" /></p>
+<p>Read our announcement for RF-DETR, the first real-time model to achieve 60+ mean Average Precision when benchmarked on the COCO dataset.</p>
+<p><a href="https://blog.roboflow.com/rf-detr/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Read the announcement</a></p>
+</li>
 </ul>
-<h2 id="2">2. 환경<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># RF-DETR 설치 (아직 안 했다면)</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pip<span class="w"> </span>install<span class="w"> </span>rfdetr
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 또는 소스에서 설치 (rf-detr 클론 후)</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">cd</span><span class="w"> </span>/home/mbd1234/rf-detr
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
-</span></code></pre></div>
-<h2 id="3">3. 학습 실행<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>/home/mbd1234/rf-detr
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python<span class="w"> </span>train_seg_cell_opti.py
-</span></code></pre></div>
-<ul>
-<li>기본: <strong>RFDETRSegMedium</strong>, 50 에폭, <code>batch_size=4</code>, <code>grad_accum_steps=4</code> (effective batch 16)</li>
-<li>출력 디렉터리: <code>rf-detr/outputs/seg_cell_opti_10</code></li>
-</ul>
-<h3 id="_1">옵션<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>옵션</th>
-<th>설명</th>
-<th>기본값</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--dataset-dir</code></td>
-<td>학습 데이터 경로</td>
-<td><code>data/Optiresolve_result_20260212/cell_opti_10</code></td>
-</tr>
-<tr>
-<td><code>--output-dir</code></td>
-<td>체크포인트/로그 저장 경로</td>
-<td><code>rf-detr/outputs/seg_cell_opti_10</code></td>
-</tr>
-<tr>
-<td><code>--epochs</code></td>
-<td>에폭 수</td>
-<td>50</td>
-</tr>
-<tr>
-<td><code>--batch-size</code></td>
-<td>배치 크기</td>
-<td>4</td>
-</tr>
-<tr>
-<td><code>--grad-accum-steps</code></td>
-<td>그래디언트 누적 스텝</td>
-<td>4</td>
-</tr>
-<tr>
-<td><code>--lr</code></td>
-<td>학습률</td>
-<td>1e-4</td>
-</tr>
-<tr>
-<td><code>--small</code></td>
-<td>RFDETRSegSmall 사용 (GPU 메모리 절약)</td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>--resume</code></td>
-<td>재개할 체크포인트 경로</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-<p>예:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># GPU 메모리 적을 때</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>python<span class="w"> </span>train_seg_cell_opti.py<span class="w"> </span>--small<span class="w"> </span>--batch-size<span class="w"> </span><span class="m">2</span><span class="w"> </span>--grad-accum-steps<span class="w"> </span><span class="m">8</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 에폭/경로 지정</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>python<span class="w"> </span>train_seg_cell_opti.py<span class="w"> </span>--epochs<span class="w"> </span><span class="m">100</span><span class="w"> </span>--output-dir<span class="w"> </span>./my_run
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 학습 재개</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>python<span class="w"> </span>train_seg_cell_opti.py<span class="w"> </span>--resume<span class="w"> </span>./outputs/seg_cell_opti_10/checkpoint.pth
-</span></code></pre></div>
-<h2 id="4">4. 학습 후 추론<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<p>학습이 끝나면 <code>output_dir</code> 아래에 다음이 생성됩니다.</p>
-<ul>
-<li><code>checkpoint_best_total.pth</code> — 추론용으로 권장</li>
-<li><code>checkpoint_best_ema.pth</code> — EMA 가중치</li>
-</ul>
-<p>파이프라인에서 사용할 때:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRSegMedium</span>  <span class="c1"># 또는 SegSmall</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRSegMedium</span><span class="p">(</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">pretrain_weights</span><span class="o">=</span><span class="s2">&quot;/home/mbd1234/rf-detr/outputs/seg_cell_opti_10/checkpoint_best_total.pth&quot;</span><span class="p">,</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">class_name</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;background&quot;</span><span class="p">,</span> <span class="s2">&quot;cell&quot;</span><span class="p">],</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">)</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">detections</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-</span></code></pre></div>
-<p>또는 기존 <code>00_infer_and_save_preds.py</code>에서 <code>--weights</code>를 위 체크포인트 경로로 지정하면 됩니다.</p>
+</div>
 
 
 
@@ -1903,8 +1939,13 @@
 
 
 
+  
+  
 
 
+
+
+  
 
 
 

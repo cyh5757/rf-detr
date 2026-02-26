@@ -12,28 +12,28 @@
         <meta name="author" content="Roboflow">
       
       
-        <link rel="canonical" href="https://rfdetr.roboflow.com/develop/learn/export/">
+        <link rel="canonical" href="https://rfdetr.roboflow.com/develop/learn/train/loggers/">
       
       
-        <link rel="prev" href="../train/loggers/">
+        <link rel="prev" href="../augmentations/">
       
       
-        <link rel="next" href="../deploy/">
+        <link rel="next" href="../../export/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/roboflow-logo.svg">
+      <link rel="icon" href="../../../assets/roboflow-logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
-        <title>Export Model - RF-DETR</title>
+        <title>Training Loggers - RF-DETR</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -52,11 +52,11 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../../stylesheets/rf.css">
+      <link rel="stylesheet" href="../../../stylesheets/rf.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#export-rf-detr-model-to-onnx" class="md-skip">
+        <a href="#training-loggers" class="md-skip">
           Skip to content
         </a>
       
@@ -102,14 +102,14 @@
 
     <!-- Link to home -->
     <a
-      href="../.."
+      href="../../.."
       title="RF-DETR"
       class="md-header__button md-logo"
       aria-label="RF-DETR"
       data-md-component="logo"
     >
       
-  <img src="../../assets/roboflow-logo.svg" alt="logo">
+  <img src="../../../assets/roboflow-logo.svg" alt="logo">
 
     </a>
 
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis" style="display: flex; align-items: center; gap: 0.5rem;">
             <a
-            href="../.."
+            href="../../.."
             title="RF-DETR"
             class="md-header__button md-logo"
             aria-label="RF-DETR"
@@ -138,11 +138,11 @@
             id="item-logo"
             >
             
-  <img src="../../assets/roboflow-logo.svg" alt="logo">
+  <img src="../../../assets/roboflow-logo.svg" alt="logo">
 
             </a>
             
-              Export Model
+              Training Loggers
             
           </span>
         </div>
@@ -308,7 +308,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -331,7 +331,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../install/" class="md-tabs__link">
+        <a href="../../install/" class="md-tabs__link">
           
   
   
@@ -351,7 +351,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../reference/rfdetr/" class="md-tabs__link">
+        <a href="../../../reference/rfdetr/" class="md-tabs__link">
           
   
   
@@ -369,7 +369,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../tutorials/" class="md-tabs__link">
+      <a href="../../../tutorials/" class="md-tabs__link">
         
   
   
@@ -429,9 +429,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="RF-DETR" class="md-nav__button md-logo" aria-label="RF-DETR" data-md-component="logo">
+    <a href="../../.." title="RF-DETR" class="md-nav__button md-logo" aria-label="RF-DETR" data-md-component="logo">
       
-  <img src="../../assets/roboflow-logo.svg" alt="logo">
+  <img src="../../../assets/roboflow-logo.svg" alt="logo">
 
     </a>
     RF-DETR
@@ -458,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -540,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+      <a href="../../install/" class="md-nav__link">
         
   
   
@@ -620,7 +620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../run/detection/" class="md-nav__link">
+      <a href="../../run/detection/" class="md-nav__link">
         
   
   
@@ -648,7 +648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../run/segmentation/" class="md-nav__link">
+      <a href="../../run/segmentation/" class="md-nav__link">
         
   
   
@@ -676,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pretrained/" class="md-nav__link">
+      <a href="../../pretrained/" class="md-nav__link">
         
   
   
@@ -709,8 +709,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -719,13 +721,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -746,7 +746,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -764,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../train/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -792,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../train/dataset-formats/" class="md-nav__link">
+      <a href="../dataset-formats/" class="md-nav__link">
         
   
   
@@ -820,7 +820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../train/training-parameters/" class="md-nav__link">
+      <a href="../training-parameters/" class="md-nav__link">
         
   
   
@@ -848,7 +848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../train/advanced/" class="md-nav__link">
+      <a href="../advanced/" class="md-nav__link">
         
   
   
@@ -876,7 +876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../train/augmentations/" class="md-nav__link">
+      <a href="../augmentations/" class="md-nav__link">
         
   
   
@@ -892,42 +892,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../train/loggers/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Training Loggers
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -956,7 +920,7 @@
   <span class="md-ellipsis">
     
   
-    Export Model
+    Training Loggers
   
 
     
@@ -974,7 +938,7 @@
   <span class="md-ellipsis">
     
   
-    Export Model
+    Training Loggers
   
 
     
@@ -1000,55 +964,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#tensorboard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installation
+        TensorBoard
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#basic-export" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Basic Export
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#export-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Export Parameters
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#advanced-export-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Advanced Export Examples
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Advanced Export Examples">
+    <nav class="md-nav" aria-label="TensorBoard">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#export-with-custom-output-directory" class="md-nav__link">
+  <a href="#setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Export with Custom Output Directory
+        Setup
       
     </span>
   </a>
@@ -1056,10 +987,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#export-with-simplification" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Export with Simplification
+        Usage
       
     </span>
   </a>
@@ -1067,10 +998,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#export-with-custom-resolution" class="md-nav__link">
+  <a href="#viewing-logs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Export with Custom Resolution
+        Viewing Logs
       
     </span>
   </a>
@@ -1078,10 +1009,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#export-backbone-only" class="md-nav__link">
+  <a href="#logged-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Export Backbone Only
+        Logged Metrics
       
     </span>
   </a>
@@ -1094,33 +1025,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#output-files" class="md-nav__link">
+  <a href="#weights-and-biases" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Output Files
+        Weights and Biases
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-convert-onnx-to-tensorrt" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Optional: Convert ONNX to TensorRT
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Optional: Convert ONNX to TensorRT">
+    <nav class="md-nav" aria-label="Weights and Biases">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#setup_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prerequisites
+        Setup
       
     </span>
   </a>
@@ -1128,10 +1048,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#python-api-conversion" class="md-nav__link">
+  <a href="#usage_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Python API Conversion
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
       
     </span>
   </a>
@@ -1144,22 +1086,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-the-exported-model" class="md-nav__link">
+  <a href="#clearml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using the Exported Model
+        ClearML
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Using the Exported Model">
+    <nav class="md-nav" aria-label="ClearML">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#onnx-runtime" class="md-nav__link">
+  <a href="#setup_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ONNX Runtime
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
       
     </span>
   </a>
@@ -1172,10 +1147,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#mlflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Steps
+        MLflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MLflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-tracking-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Tracking Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-logs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing Logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-multiple-loggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Multiple Loggers
       
     </span>
   </a>
@@ -1191,6 +1238,14 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
               
                 
   
@@ -1198,7 +1253,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../deploy/" class="md-nav__link">
+      <a href="../../export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/" class="md-nav__link">
         
   
   
@@ -1226,7 +1309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../benchmarks/" class="md-nav__link">
+      <a href="../../benchmarks/" class="md-nav__link">
         
   
   
@@ -1313,7 +1396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/rfdetr/" class="md-nav__link">
+      <a href="../../../reference/rfdetr/" class="md-nav__link">
         
   
   
@@ -1393,7 +1476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/nano/" class="md-nav__link">
+      <a href="../../../reference/nano/" class="md-nav__link">
         
   
   
@@ -1421,7 +1504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/small/" class="md-nav__link">
+      <a href="../../../reference/small/" class="md-nav__link">
         
   
   
@@ -1449,7 +1532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/base/" class="md-nav__link">
+      <a href="../../../reference/base/" class="md-nav__link">
         
   
   
@@ -1477,7 +1560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/medium/" class="md-nav__link">
+      <a href="../../../reference/medium/" class="md-nav__link">
         
   
   
@@ -1505,7 +1588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/large/" class="md-nav__link">
+      <a href="../../../reference/large/" class="md-nav__link">
         
   
   
@@ -1533,7 +1616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/xlarge/" class="md-nav__link">
+      <a href="../../../reference/xlarge/" class="md-nav__link">
         
   
   
@@ -1561,7 +1644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/2xlarge/" class="md-nav__link">
+      <a href="../../../reference/2xlarge/" class="md-nav__link">
         
   
   
@@ -1589,7 +1672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/large_deprecated/" class="md-nav__link">
+      <a href="../../../reference/large_deprecated/" class="md-nav__link">
         
   
   
@@ -1677,7 +1760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/seg_nano/" class="md-nav__link">
+      <a href="../../../reference/seg_nano/" class="md-nav__link">
         
   
   
@@ -1705,7 +1788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/seg_small/" class="md-nav__link">
+      <a href="../../../reference/seg_small/" class="md-nav__link">
         
   
   
@@ -1733,7 +1816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/seg_medium/" class="md-nav__link">
+      <a href="../../../reference/seg_medium/" class="md-nav__link">
         
   
   
@@ -1761,7 +1844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/seg_large/" class="md-nav__link">
+      <a href="../../../reference/seg_large/" class="md-nav__link">
         
   
   
@@ -1789,7 +1872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/seg_xlarge/" class="md-nav__link">
+      <a href="../../../reference/seg_xlarge/" class="md-nav__link">
         
   
   
@@ -1817,7 +1900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/seg_2xlarge/" class="md-nav__link">
+      <a href="../../../reference/seg_2xlarge/" class="md-nav__link">
         
   
   
@@ -1845,7 +1928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/seg_preview/" class="md-nav__link">
+      <a href="../../../reference/seg_preview/" class="md-nav__link">
         
   
   
@@ -1933,7 +2016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/train_config/" class="md-nav__link">
+      <a href="../../../reference/train_config/" class="md-nav__link">
         
   
   
@@ -1961,7 +2044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/segmentation_train_config/" class="md-nav__link">
+      <a href="../../../reference/segmentation_train_config/" class="md-nav__link">
         
   
   
@@ -2004,7 +2087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/" class="md-nav__link">
+      <a href="../../../tutorials/" class="md-nav__link">
         
   
   
@@ -2078,55 +2161,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#tensorboard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installation
+        TensorBoard
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#basic-export" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Basic Export
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#export-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Export Parameters
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#advanced-export-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Advanced Export Examples
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Advanced Export Examples">
+    <nav class="md-nav" aria-label="TensorBoard">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#export-with-custom-output-directory" class="md-nav__link">
+  <a href="#setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Export with Custom Output Directory
+        Setup
       
     </span>
   </a>
@@ -2134,10 +2184,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#export-with-simplification" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Export with Simplification
+        Usage
       
     </span>
   </a>
@@ -2145,10 +2195,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#export-with-custom-resolution" class="md-nav__link">
+  <a href="#viewing-logs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Export with Custom Resolution
+        Viewing Logs
       
     </span>
   </a>
@@ -2156,10 +2206,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#export-backbone-only" class="md-nav__link">
+  <a href="#logged-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Export Backbone Only
+        Logged Metrics
       
     </span>
   </a>
@@ -2172,33 +2222,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#output-files" class="md-nav__link">
+  <a href="#weights-and-biases" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Output Files
+        Weights and Biases
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-convert-onnx-to-tensorrt" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Optional: Convert ONNX to TensorRT
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Optional: Convert ONNX to TensorRT">
+    <nav class="md-nav" aria-label="Weights and Biases">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#setup_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prerequisites
+        Setup
       
     </span>
   </a>
@@ -2206,10 +2245,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#python-api-conversion" class="md-nav__link">
+  <a href="#usage_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Python API Conversion
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
       
     </span>
   </a>
@@ -2222,22 +2283,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-the-exported-model" class="md-nav__link">
+  <a href="#clearml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using the Exported Model
+        ClearML
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Using the Exported Model">
+    <nav class="md-nav" aria-label="ClearML">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#onnx-runtime" class="md-nav__link">
+  <a href="#setup_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ONNX Runtime
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
       
     </span>
   </a>
@@ -2250,10 +2344,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#mlflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Steps
+        MLflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MLflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-tracking-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Tracking Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-logs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing Logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-multiple-loggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Multiple Loggers
       
     </span>
   </a>
@@ -2280,190 +2446,249 @@
   
 
 
-<h1 id="export-rf-detr-model-to-onnx">Export RF-DETR Model to ONNX<a class="headerlink" href="#export-rf-detr-model-to-onnx" title="Permanent link">&para;</a></h1>
-<p>RF-DETR supports exporting models to the ONNX format, which enables interoperability with various inference frameworks and can improve deployment efficiency.</p>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>To export your model, first install the <code>onnxexport</code> extension:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;rfdetr[onnxexport]&quot;</span>
+<h1 id="training-loggers">Training Loggers<a class="headerlink" href="#training-loggers" title="Permanent link">&para;</a></h1>
+<p>RF-DETR supports integration with popular experiment tracking and visualization platforms. You can enable one or more loggers to monitor your training runs, compare experiments, and track metrics over time.</p>
+<h2 id="tensorboard">TensorBoard<a class="headerlink" href="#tensorboard" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.tensorflow.org/tensorboard">TensorBoard</a> is a powerful toolkit for visualizing and tracking training metrics.</p>
+<h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
+<p>Install the required packages:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;rfdetr[metrics]&quot;</span>
 </span></code></pre></div>
-<h2 id="basic-export">Basic Export<a class="headerlink" href="#basic-export" title="Permanent link">&para;</a></h2>
-<p>Export your trained model to ONNX format:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Object Detection</label><label for="__tabbed_1_2">Image Segmentation</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<p>Enable TensorBoard logging in your training:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRMedium</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRMedium</span><span class="p">(</span><span class="n">pretrain_weights</span><span class="o">=</span><span class="s2">&quot;&lt;path/to/checkpoint.pth&gt;&quot;</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRMedium</span><span class="p">()</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">()</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">dataset_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dataset&quot;</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">grad_accum_steps</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;output&quot;</span><span class="p">,</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">tensorboard</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">)</span>
 </span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRSegMedium</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRSegMedium</span><span class="p">(</span><span class="n">pretrain_weights</span><span class="o">=</span><span class="s2">&quot;&lt;path/to/checkpoint.pth&gt;&quot;</span><span class="p">)</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">()</span>
+<h3 id="viewing-logs">Viewing Logs<a class="headerlink" href="#viewing-logs" title="Permanent link">&para;</a></h3>
+<p><strong>Local environment:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tensorboard<span class="w"> </span>--logdir<span class="w"> </span>output
 </span></code></pre></div>
-</div>
-</div>
-</div>
-<p>This command saves the ONNX model to the <code>output</code> directory by default.</p>
-<h2 id="export-parameters">Export Parameters<a class="headerlink" href="#export-parameters" title="Permanent link">&para;</a></h2>
-<p>The <code>export()</code> method accepts several parameters to customize the export process:</p>
+<p>Then open <code>http://localhost:6006/</code> in your browser.</p>
+<p><strong>Google Colab:</strong></p>
+<div class="language-ipython highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">%</span><span class="k">load_ext</span> tensorboard
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="o">%</span><span class="k">tensorboard</span> --logdir output
+</span></code></pre></div>
+<h3 id="logged-metrics">Logged Metrics<a class="headerlink" href="#logged-metrics" title="Permanent link">&para;</a></h3>
+<p>TensorBoard tracks:</p>
+<ul>
+<li>Training and validation loss (total)</li>
+<li>Validation mAP</li>
+<li>EMA model metrics (when enabled)</li>
+</ul>
+<hr />
+<h2 id="weights-and-biases">Weights and Biases<a class="headerlink" href="#weights-and-biases" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.wandb.ai">Weights and Biases (W&amp;B)</a> is a cloud-based platform for experiment tracking and visualization.</p>
+<h3 id="setup_1">Setup<a class="headerlink" href="#setup_1" title="Permanent link">&para;</a></h3>
+<p>Install the required packages:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;rfdetr[metrics]&quot;</span>
+</span></code></pre></div>
+<p>Log in to W&amp;B:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>wandb<span class="w"> </span>login
+</span></code></pre></div>
+<p>You can retrieve your API key at <a href="https://wandb.ai/authorize">wandb.ai/authorize</a>.</p>
+<h3 id="usage_1">Usage<a class="headerlink" href="#usage_1" title="Permanent link">&para;</a></h3>
+<p>Enable W&amp;B logging in your training:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRMedium</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRMedium</span><span class="p">()</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">dataset_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dataset&quot;</span><span class="p">,</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">grad_accum_steps</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;output&quot;</span><span class="p">,</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="n">wandb</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    <span class="n">project</span><span class="o">=</span><span class="s2">&quot;my-detection-project&quot;</span><span class="p">,</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="n">run</span><span class="o">=</span><span class="s2">&quot;experiment-001&quot;</span><span class="p">,</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>output_dir</code></td>
-<td><code>"output"</code></td>
-<td>Directory where the exported ONNX model will be saved.</td>
+<td><code>project</code></td>
+<td>Groups related experiments together</td>
 </tr>
 <tr>
-<td><code>infer_dir</code></td>
-<td><code>None</code></td>
-<td>Path to an image file to use for tracing. If not provided, a random dummy image is generated.</td>
-</tr>
-<tr>
-<td><code>simplify</code></td>
-<td><code>False</code></td>
-<td>Whether to simplify the ONNX model using onnxsim for better compatibility and performance.</td>
-</tr>
-<tr>
-<td><code>backbone_only</code></td>
-<td><code>False</code></td>
-<td>Export only the backbone feature extractor instead of the full model.</td>
-</tr>
-<tr>
-<td><code>opset_version</code></td>
-<td><code>17</code></td>
-<td>ONNX opset version to use for export. Higher versions support more operations.</td>
-</tr>
-<tr>
-<td><code>verbose</code></td>
-<td><code>True</code></td>
-<td>Whether to print verbose export information.</td>
-</tr>
-<tr>
-<td><code>force</code></td>
-<td><code>False</code></td>
-<td>Force re-export even if simplified model already exists.</td>
-</tr>
-<tr>
-<td><code>shape</code></td>
-<td><code>None</code></td>
-<td>Input shape as tuple <code>(height, width)</code>. Must be divisible by 14. If not provided, uses the model's default resolution.</td>
-</tr>
-<tr>
-<td><code>batch_size</code></td>
-<td><code>1</code></td>
-<td>Batch size for the exported model.</td>
+<td><code>run</code></td>
+<td>Identifies individual training sessions</td>
 </tr>
 </tbody>
 </table>
-<h2 id="advanced-export-examples">Advanced Export Examples<a class="headerlink" href="#advanced-export-examples" title="Permanent link">&para;</a></h2>
-<h3 id="export-with-custom-output-directory">Export with Custom Output Directory<a class="headerlink" href="#export-with-custom-output-directory" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRMedium</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRMedium</span><span class="p">(</span><span class="n">pretrain_weights</span><span class="o">=</span><span class="s2">&quot;&lt;path/to/checkpoint.pth&gt;&quot;</span><span class="p">)</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;exports/my_model&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="export-with-simplification">Export with Simplification<a class="headerlink" href="#export-with-simplification" title="Permanent link">&para;</a></h3>
-<p>Simplifying the ONNX model can improve inference performance and compatibility with various runtimes:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRMedium</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRMedium</span><span class="p">(</span><span class="n">pretrain_weights</span><span class="o">=</span><span class="s2">&quot;&lt;path/to/checkpoint.pth&gt;&quot;</span><span class="p">)</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">simplify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="export-with-custom-resolution">Export with Custom Resolution<a class="headerlink" href="#export-with-custom-resolution" title="Permanent link">&para;</a></h3>
-<p>Export the model with a specific input resolution (must be divisible by 14):</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRMedium</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRMedium</span><span class="p">(</span><span class="n">pretrain_weights</span><span class="o">=</span><span class="s2">&quot;&lt;path/to/checkpoint.pth&gt;&quot;</span><span class="p">)</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">560</span><span class="p">,</span> <span class="mi">560</span><span class="p">))</span>
-</span></code></pre></div>
-<h3 id="export-backbone-only">Export Backbone Only<a class="headerlink" href="#export-backbone-only" title="Permanent link">&para;</a></h3>
-<p>Export only the backbone feature extractor for use in custom pipelines:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRMedium</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRMedium</span><span class="p">(</span><span class="n">pretrain_weights</span><span class="o">=</span><span class="s2">&quot;&lt;path/to/checkpoint.pth&gt;&quot;</span><span class="p">)</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">backbone_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></code></pre></div>
-<h2 id="output-files">Output Files<a class="headerlink" href="#output-files" title="Permanent link">&para;</a></h2>
-<p>After running the export, you will find the following files in your output directory:</p>
+<p>If you don't specify a run name, W&amp;B assigns a random one automatically.</p>
+<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
+<p>Access your runs at <a href="https://wandb.ai">wandb.ai</a>. W&amp;B provides:</p>
 <ul>
-<li><code>inference_model.onnx</code> - The exported ONNX model (or <code>backbone_model.onnx</code> if <code>backbone_only=True</code>)</li>
-<li><code>inference_model.sim.onnx</code> - The simplified ONNX model (if <code>simplify=True</code>)</li>
+<li>Real-time metric visualization</li>
+<li>Experiment comparison</li>
+<li>Hyperparameter tracking</li>
+<li>System metrics (GPU usage, memory)</li>
+<li>Training config logging</li>
 </ul>
-<h2 id="optional-convert-onnx-to-tensorrt">Optional: Convert ONNX to TensorRT<a class="headerlink" href="#optional-convert-onnx-to-tensorrt" title="Permanent link">&para;</a></h2>
-<p>If you want lower latency on NVIDIA GPUs, you can convert the exported ONNX model to a TensorRT engine.</p>
-<blockquote>
-<p>[!IMPORTANT]
-Run TensorRT conversion on the same machine and GPU family where you plan to deploy inference.</p>
-</blockquote>
-<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="clearml">ClearML<a class="headerlink" href="#clearml" title="Permanent link">&para;</a></h2>
+<p><a href="https://clear.ml">ClearML</a> is an open-source platform for managing, tracking, and automating machine learning experiments.</p>
+<h3 id="setup_2">Setup<a class="headerlink" href="#setup_2" title="Permanent link">&para;</a></h3>
+<p>Install the required packages:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;rfdetr[metrics]&quot;</span>
+</span></code></pre></div>
+<p>Initialize ClearML:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>clearml-init
+</span></code></pre></div>
+<p>Follow the instructions to connect to your ClearML server (hosted or self-hosted).</p>
+<h3 id="usage_2">Usage<a class="headerlink" href="#usage_2" title="Permanent link">&para;</a></h3>
+<p>Enable ClearML logging in your training:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRMedium</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRMedium</span><span class="p">()</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="n">dataset_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dataset&quot;</span><span class="p">,</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    <span class="n">grad_accum_steps</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;output&quot;</span><span class="p">,</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    <span class="n">clearml</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="n">project</span><span class="o">=</span><span class="s2">&quot;my-detection-project&quot;</span><span class="p">,</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>    <span class="n">run</span><span class="o">=</span><span class="s2">&quot;experiment-001&quot;</span><span class="p">,</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="configuration_1">Configuration<a class="headerlink" href="#configuration_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project</code></td>
+<td>Groups related experiments together</td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td>Identifies individual training sessions (task name)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="features_1">Features<a class="headerlink" href="#features_1" title="Permanent link">&para;</a></h3>
+<p>Access your experiments in the ClearML Web UI. ClearML provides:</p>
 <ul>
-<li>Install TensorRT (<code>trtexec</code> must be available in your <code>PATH</code>)</li>
-<li>Export an ONNX model first (for example: <code>output/inference_model.onnx</code>)</li>
+<li>Real-time metric visualization</li>
+<li>Experiment comparison</li>
+<li>Hyperparameter tracking</li>
+<li>Artifact storage</li>
+<li>Model versioning</li>
 </ul>
-<h3 id="python-api-conversion">Python API Conversion<a class="headerlink" href="#python-api-conversion" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">argparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">Namespace</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr.deploy.export</span><span class="w"> </span><span class="kn">import</span> <span class="n">trtexec</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">args</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="n">profile</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="n">dry_run</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">)</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="n">trtexec</span><span class="p">(</span><span class="s2">&quot;output/inference_model.onnx&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<hr />
+<h2 id="mlflow">MLflow<a class="headerlink" href="#mlflow" title="Permanent link">&para;</a></h2>
+<p><a href="https://mlflow.org/">MLflow</a> is an open-source platform for the machine learning lifecycle that helps track experiments, package code into reproducible runs, and share and deploy models.</p>
+<h3 id="setup_3">Setup<a class="headerlink" href="#setup_3" title="Permanent link">&para;</a></h3>
+<p>Install the required packages:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;rfdetr[metrics]&quot;</span>
 </span></code></pre></div>
-<p>This produces <code>output/inference_model.engine</code>. If <code>profile=True</code>, it also writes an Nsight Systems report (<code>.nsys-rep</code>).</p>
-<h2 id="using-the-exported-model">Using the Exported Model<a class="headerlink" href="#using-the-exported-model" title="Permanent link">&para;</a></h2>
-<p>Once exported, you can use the ONNX model with various inference frameworks:</p>
-<h3 id="onnx-runtime">ONNX Runtime<a class="headerlink" href="#onnx-runtime" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">onnxruntime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ort</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># Load the ONNX model</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">session</span> <span class="o">=</span> <span class="n">ort</span><span class="o">.</span><span class="n">InferenceSession</span><span class="p">(</span><span class="s2">&quot;output/inference_model.onnx&quot;</span><span class="p">)</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># Prepare input image</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;image.jpg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">560</span><span class="p">,</span> <span class="mi">560</span><span class="p">))</span>  <span class="c1"># Resize to model&#39;s input resolution</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">image_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.0</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># Normalize</span>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">])</span>
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">])</span>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="n">image_array</span> <span class="o">=</span> <span class="p">(</span><span class="n">image_array</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="c1"># Convert to NCHW format</span>
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="n">image_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">image_array</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="n">image_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">image_array</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="c1"># Run inference</span>
-</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="n">outputs</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">image_array</span><span class="p">})</span>
-</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">outputs</span>
+<h3 id="usage_3">Usage<a class="headerlink" href="#usage_3" title="Permanent link">&para;</a></h3>
+<p>Enable MLflow logging in your training:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRMedium</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRMedium</span><span class="p">()</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">dataset_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dataset&quot;</span><span class="p">,</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="n">grad_accum_steps</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;output&quot;</span><span class="p">,</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    <span class="n">mlflow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>    <span class="n">project</span><span class="o">=</span><span class="s2">&quot;my-detection-project&quot;</span><span class="p">,</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>    <span class="n">run</span><span class="o">=</span><span class="s2">&quot;experiment-001&quot;</span><span class="p">,</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<p>After exporting your model, you may want to:</p>
+<h3 id="configuration_2">Configuration<a class="headerlink" href="#configuration_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project</code></td>
+<td>Sets the experiment name in MLflow</td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td>Sets the run name (auto-generated if not specified)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="custom-tracking-server">Custom Tracking Server<a class="headerlink" href="#custom-tracking-server" title="Permanent link">&para;</a></h3>
+<p>To use a custom MLflow tracking server, set environment variables:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1"># Set MLflow tracking URI</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MLFLOW_TRACKING_URI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;https://your-mlflow-server.com&quot;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="c1"># For authentication with tracking servers that require it</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MLFLOW_TRACKING_TOKEN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;your-auth-token&quot;</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># Then initialize and train your model</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRMedium</span><span class="p">()</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">mlflow</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div>
+<p>For teams using a hosted MLflow service (like Databricks), you'll typically need to set:</p>
 <ul>
-<li><a href="../deploy/">Deploy to Roboflow</a> for cloud-based inference and workflow integration</li>
-<li>Use the ONNX model with TensorRT for optimized GPU inference</li>
-<li>Integrate with edge deployment frameworks like ONNX Runtime or OpenVINO</li>
+<li><code>MLFLOW_TRACKING_URI</code>: The URL of your MLflow tracking server</li>
+<li><code>MLFLOW_TRACKING_TOKEN</code>: Authentication token for your MLflow server</li>
+</ul>
+<h3 id="viewing-logs_1">Viewing Logs<a class="headerlink" href="#viewing-logs_1" title="Permanent link">&para;</a></h3>
+<p>Start the MLflow UI:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>mlflow<span class="w"> </span>ui<span class="w"> </span>--backend-store-uri<span class="w"> </span>&lt;OUTPUT_PATH&gt;
+</span></code></pre></div>
+<p>Then open <code>http://localhost:5000</code> in your browser to access the MLflow dashboard.</p>
+<hr />
+<h2 id="using-multiple-loggers">Using Multiple Loggers<a class="headerlink" href="#using-multiple-loggers" title="Permanent link">&para;</a></h2>
+<p>You can enable multiple logging systems simultaneously:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">dataset_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dataset&quot;</span><span class="p">,</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="n">tensorboard</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="n">wandb</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="n">clearml</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="n">mlflow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    <span class="n">project</span><span class="o">=</span><span class="s2">&quot;my-project&quot;</span><span class="p">,</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    <span class="n">run</span><span class="o">=</span><span class="s2">&quot;experiment-001&quot;</span><span class="p">,</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>This allows you to leverage the strengths of different platforms:</p>
+<ul>
+<li><strong>TensorBoard</strong>: Local visualization and debugging</li>
+<li><strong>W&amp;B</strong>: Cloud-based collaboration and experiment comparison</li>
+<li><strong>ClearML</strong>: End-to-end MLOps pipeline automation</li>
+<li><strong>MLflow</strong>: Model registry and deployment tracking</li>
 </ul>
 
 
@@ -2569,10 +2794,10 @@ Run TensorRT conversion on the same machine and GPU family where you plan to dep
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "content.code.copy", "navigation.expand", "navigation.tabs", "content.code.annotate", "navigation.tracking", "content.tooltips", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.tabs.link", "content.code.copy", "navigation.expand", "navigation.tabs", "content.code.annotate", "navigation.tracking", "content.tooltips", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

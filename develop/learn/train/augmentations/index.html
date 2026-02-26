@@ -12,24 +12,28 @@
         <meta name="author" content="Roboflow">
       
       
-        <link rel="canonical" href="https://roboflow.github.io/rf-detr/develop/CODE_REVIEW_train_seg_cell_opti/">
+        <link rel="canonical" href="https://rfdetr.roboflow.com/develop/learn/train/augmentations/">
       
       
+        <link rel="prev" href="../advanced/">
+      
+      
+        <link rel="next" href="../loggers/">
       
       
         
       
       
-      <link rel="icon" href="../assets/roboflow-logo.svg">
+      <link rel="icon" href="../../../assets/roboflow-logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
-        <title>코드 리뷰: train_seg_cell_opti.py - RF-DETR</title>
+        <title>Augmentations - RF-DETR</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -48,11 +52,11 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../stylesheets/rf.css">
+      <link rel="stylesheet" href="../../../stylesheets/rf.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#train_seg_cell_optipy" class="md-skip">
+        <a href="#augmentations" class="md-skip">
           Skip to content
         </a>
       
@@ -98,14 +102,14 @@
 
     <!-- Link to home -->
     <a
-      href=".."
+      href="../../.."
       title="RF-DETR"
       class="md-header__button md-logo"
       aria-label="RF-DETR"
       data-md-component="logo"
     >
       
-  <img src="../assets/roboflow-logo.svg" alt="logo">
+  <img src="../../../assets/roboflow-logo.svg" alt="logo">
 
     </a>
 
@@ -126,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis" style="display: flex; align-items: center; gap: 0.5rem;">
             <a
-            href=".."
+            href="../../.."
             title="RF-DETR"
             class="md-header__button md-logo"
             aria-label="RF-DETR"
@@ -134,11 +138,11 @@
             id="item-logo"
             >
             
-  <img src="../assets/roboflow-logo.svg" alt="logo">
+  <img src="../../../assets/roboflow-logo.svg" alt="logo">
 
             </a>
             
-              코드 리뷰: train_seg_cell_opti.py
+              Augmentations
             
           </span>
         </div>
@@ -304,7 +308,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -321,11 +325,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../learn/install/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../install/" class="md-tabs__link">
           
   
   
@@ -345,7 +351,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/rfdetr/" class="md-tabs__link">
+        <a href="../../../reference/rfdetr/" class="md-tabs__link">
           
   
   
@@ -354,6 +360,25 @@
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tutorials/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorials
+
+      </a>
+    </li>
   
 
       
@@ -404,9 +429,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="RF-DETR" class="md-nav__button md-logo" aria-label="RF-DETR" data-md-component="logo">
+    <a href="../../.." title="RF-DETR" class="md-nav__button md-logo" aria-label="RF-DETR" data-md-component="logo">
       
-  <img src="../assets/roboflow-logo.svg" alt="logo">
+  <img src="../../../assets/roboflow-logo.svg" alt="logo">
 
     </a>
     RF-DETR
@@ -433,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -457,26 +482,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -494,7 +522,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -512,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../learn/install/" class="md-nav__link">
+      <a href="../../install/" class="md-nav__link">
         
   
   
@@ -592,7 +620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../learn/run/detection/" class="md-nav__link">
+      <a href="../../run/detection/" class="md-nav__link">
         
   
   
@@ -620,7 +648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../learn/run/segmentation/" class="md-nav__link">
+      <a href="../../run/segmentation/" class="md-nav__link">
         
   
   
@@ -628,6 +656,34 @@
     
   
     Segmentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pretrained/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pretrained Models
   
 
     
@@ -653,8 +709,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -663,13 +721,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -690,7 +746,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -708,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../learn/train/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -736,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../learn/train/dataset-formats/" class="md-nav__link">
+      <a href="../dataset-formats/" class="md-nav__link">
         
   
   
@@ -764,7 +820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../learn/train/training-parameters/" class="md-nav__link">
+      <a href="../training-parameters/" class="md-nav__link">
         
   
   
@@ -792,7 +848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../learn/train/advanced/" class="md-nav__link">
+      <a href="../advanced/" class="md-nav__link">
         
   
   
@@ -800,6 +856,214 @@
     
   
     Advanced Training
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Augmentations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Augmentations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in Presets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Presets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommendations-by-dataset-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendations by Dataset Size
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometric-vs-pixel-level-transforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geometric vs. Pixel-Level Transforms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-custom-transforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced: Custom Transforms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loggers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training Loggers
   
 
     
@@ -828,7 +1092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../learn/export/" class="md-nav__link">
+      <a href="../../export/" class="md-nav__link">
         
   
   
@@ -856,7 +1120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../learn/deploy/" class="md-nav__link">
+      <a href="../../deploy/" class="md-nav__link">
         
   
   
@@ -884,7 +1148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../learn/benchmarks/" class="md-nav__link">
+      <a href="../../benchmarks/" class="md-nav__link">
         
   
   
@@ -971,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/rfdetr/" class="md-nav__link">
+      <a href="../../../reference/rfdetr/" class="md-nav__link">
         
   
   
@@ -1051,7 +1315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/nano/" class="md-nav__link">
+      <a href="../../../reference/nano/" class="md-nav__link">
         
   
   
@@ -1079,7 +1343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/small/" class="md-nav__link">
+      <a href="../../../reference/small/" class="md-nav__link">
         
   
   
@@ -1107,7 +1371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/base/" class="md-nav__link">
+      <a href="../../../reference/base/" class="md-nav__link">
         
   
   
@@ -1135,7 +1399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/medium/" class="md-nav__link">
+      <a href="../../../reference/medium/" class="md-nav__link">
         
   
   
@@ -1163,7 +1427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/large/" class="md-nav__link">
+      <a href="../../../reference/large/" class="md-nav__link">
         
   
   
@@ -1191,7 +1455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/xlarge/" class="md-nav__link">
+      <a href="../../../reference/xlarge/" class="md-nav__link">
         
   
   
@@ -1219,7 +1483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/2xlarge/" class="md-nav__link">
+      <a href="../../../reference/2xlarge/" class="md-nav__link">
         
   
   
@@ -1247,7 +1511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/large_deprecated/" class="md-nav__link">
+      <a href="../../../reference/large_deprecated/" class="md-nav__link">
         
   
   
@@ -1335,7 +1599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/seg_nano/" class="md-nav__link">
+      <a href="../../../reference/seg_nano/" class="md-nav__link">
         
   
   
@@ -1363,7 +1627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/seg_small/" class="md-nav__link">
+      <a href="../../../reference/seg_small/" class="md-nav__link">
         
   
   
@@ -1391,7 +1655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/seg_medium/" class="md-nav__link">
+      <a href="../../../reference/seg_medium/" class="md-nav__link">
         
   
   
@@ -1419,7 +1683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/seg_large/" class="md-nav__link">
+      <a href="../../../reference/seg_large/" class="md-nav__link">
         
   
   
@@ -1447,7 +1711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/seg_xlarge/" class="md-nav__link">
+      <a href="../../../reference/seg_xlarge/" class="md-nav__link">
         
   
   
@@ -1475,7 +1739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/seg_2xlarge/" class="md-nav__link">
+      <a href="../../../reference/seg_2xlarge/" class="md-nav__link">
         
   
   
@@ -1503,7 +1767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/seg_preview/" class="md-nav__link">
+      <a href="../../../reference/seg_preview/" class="md-nav__link">
         
   
   
@@ -1591,7 +1855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/train_config/" class="md-nav__link">
+      <a href="../../../reference/train_config/" class="md-nav__link">
         
   
   
@@ -1619,7 +1883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/segmentation_train_config/" class="md-nav__link">
+      <a href="../../../reference/segmentation_train_config/" class="md-nav__link">
         
   
   
@@ -1651,6 +1915,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1709,10 +2000,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 결론 요약
+        Quick Start
       
     </span>
   </a>
@@ -1720,33 +2011,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-rfdetr" class="md-nav__link">
+  <a href="#built-in-presets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. rfdetr 학습/설정 흐름
+        Built-in Presets
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. rfdetr 학습/설정 흐름">
+    <nav class="md-nav" aria-label="Built-in Presets">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-modeltrainkwargs" class="md-nav__link">
+  <a href="#recommendations-by-dataset-size" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 model.train(**kwargs) 진입
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-config" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 Config에 이미 있는 것들
+        Recommendations by Dataset Size
       
     </span>
   </a>
@@ -1759,10 +2039,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#geometric-vs-pixel-level-transforms" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 스크립트에서 넘기면 안 되거나 무시되는 인자
+        Geometric vs. Pixel-Level Transforms
       
     </span>
   </a>
@@ -1770,10 +2050,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
+  <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 권장 작성 방식
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-custom-transforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced: Custom Transforms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
       
     </span>
   </a>
@@ -1800,118 +2124,132 @@
   
 
 
-<h1 id="train_seg_cell_optipy">코드 리뷰: train_seg_cell_opti.py<a class="headerlink" href="#train_seg_cell_optipy" title="Permanent link">&para;</a></h1>
-<p><code>rfdetr/src/rfdetr</code> 구조와 <code>train_seg_cell_opti.py</code>를 비교한 코드 리뷰입니다.</p>
-<hr />
-<h2 id="1">1. 결론 요약<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h1 id="augmentations">Augmentations<a class="headerlink" href="#augmentations" title="Permanent link">&para;</a></h1>
+<p>RF-DETR supports custom data augmentations via <a href="https://albumentations.ai/">Albumentations</a>, with automatic bounding box and mask handling for geometric transforms.</p>
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p>Pass <code>aug_config</code> to your training call. Import one of the built-in presets:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr</span><span class="w"> </span><span class="kn">import</span> <span class="n">RFDETRSmall</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr.datasets.aug_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">AUG_CONSERVATIVE</span><span class="p">,</span> <span class="n">AUG_AGGRESSIVE</span><span class="p">,</span> <span class="n">AUG_AERIAL</span><span class="p">,</span> <span class="n">AUG_INDUSTRIAL</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RFDETRSmall</span><span class="p">()</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">dataset_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dataset&quot;</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">aug_config</span><span class="o">=</span><span class="n">AUG_CONSERVATIVE</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Or pass a custom dict directly — keys are Albumentations transform names:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">dataset_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dataset&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">aug_config</span><span class="o">=</span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="s2">&quot;HorizontalFlip&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="s2">&quot;Rotate&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">},</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="s2">&quot;GaussianBlur&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">},</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="p">},</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>To disable augmentations: <code>aug_config={}</code>. Omitting it uses the default (horizontal flip at 50%).</p>
+<h2 id="built-in-presets">Built-in Presets<a class="headerlink" href="#built-in-presets" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>항목</th>
-<th>문제</th>
-<th>권장</th>
+<th>Preset</th>
+<th>Best for</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>wandb</strong></td>
-<td>스크립트에서 <code>wandb.init()</code> 호출 + rfdetr 내부에서도 <code>MetricsWandBSink</code>가 <code>wandb.init()</code> 호출 → <strong>이중 초기화</strong></td>
-<td>스크립트에서는 wandb.init 하지 말고, <code>model.train(wandb=True, project=..., run=...)</code> 만 넘겨서 <strong>config 한 곳에서만</strong> 처리</td>
+<td><code>AUG_CONSERVATIVE</code></td>
+<td>Small datasets (under 500 images)</td>
 </tr>
 <tr>
-<td><strong>train 인자</strong></td>
-<td><code>train_ann_file</code>, <code>val_ann_file</code>, <code>resolution</code> 등은 <strong>TrainConfig에 없는 필드</strong> → 무시됨</td>
-<td><code>dataset_dir</code>, <code>output_dir</code>, <code>epochs</code>, <code>batch_size</code>, <code>grad_accum_steps</code>, <code>lr</code>, <code>resume</code>, <code>early_stopping</code>, <code>wandb</code>, <code>project</code>, <code>run</code> 등 <strong>TrainConfig/SegmentationTrainConfig 필드만</strong> 전달</td>
+<td><code>AUG_AGGRESSIVE</code></td>
+<td>Large datasets (2000+ images)</td>
 </tr>
 <tr>
-<td><strong>resolution</strong></td>
-<td><code>resolution</code>은 TrainConfig가 아니라 <strong>모델 config</strong>(RFDETRSegMediumConfig 등)에 있음. <code>train()</code> 인자로 넘겨도 반영 안 됨</td>
-<td>모델 <strong>사이즈 선택</strong>(SegSmall / SegMedium 등)으로만 해상도 결정. resolution 인자는 train()에서 제거</td>
+<td><code>AUG_AERIAL</code></td>
+<td>Satellite / overhead imagery</td>
 </tr>
 <tr>
-<td><strong>class_names / num_classes</strong></td>
-<td>roboflow 모드에서는 <code>train_from_config</code> 안에서 <code>_load_classes(dataset_dir)</code>로 <strong>데이터셋에서 자동 로드</strong> → 스크립트에서 준 값은 학습 시 덮어씌워짐</td>
-<td>데이터셋이 이미 올바르면 스크립트에서 굳이 넘기지 않아도 됨 (모델 생성 시점용으로만 유지 가능)</td>
-</tr>
-<tr>
-<td><strong>Artifact 업로드</strong></td>
-<td>학습 끝난 뒤 <code>wandb.log_artifact()</code> 호출하는데, rfdetr이 <code>on_train_end</code>에서 <code>wandb.finish()</code>를 호출한 <strong>이후</strong>라 run이 이미 종료됨 → artifact가 기대한 run에 붙지 않을 수 있음</td>
-<td>artifact는 제거하거나, rfdetr 쪽에 on_train_end 콜백으로 넣는 식으로 한 run 안에서 처리</td>
+<td><code>AUG_INDUSTRIAL</code></td>
+<td>Manufacturing / inspection data</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="2-rfdetr">2. rfdetr 학습/설정 흐름<a class="headerlink" href="#2-rfdetr" title="Permanent link">&para;</a></h2>
-<h3 id="21-modeltrainkwargs">2.1 <code>model.train(**kwargs)</code> 진입<a class="headerlink" href="#21-modeltrainkwargs" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>detr.py:
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  train(**kwargs)
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    → config = self.get_train_config(**kwargs)   # kwargs → SegmentationTrainConfig
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    → self.train_from_config(config, **kwargs)
+<p>All presets are plain dicts — inspect or extend them before passing:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rfdetr.datasets.aug_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">AUG_AGGRESSIVE</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">my_config</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">AUG_AGGRESSIVE</span><span class="p">,</span> <span class="s2">&quot;VerticalFlip&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">}}</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">dataset_dir</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">aug_config</span><span class="o">=</span><span class="n">my_config</span><span class="p">)</span>
 </span></code></pre></div>
-<ul>
-<li><code>train()</code>에 넣은 kwargs는 <strong>전부</strong> <code>get_train_config(**kwargs)</code>로 전달되고, 그 결과가 <code>SegmentationTrainConfig(**kwargs)</code>로 만들어짐.</li>
-<li>따라서 <strong>TrainConfig / SegmentationTrainConfig에 없는 키</strong>는 Pydantic에서 무시되거나 에러가 나며, <strong>resolution / train_ann_file / val_ann_file</strong> 같은 건 config에 없으므로 <strong>의미 없음</strong>.</li>
-</ul>
-<h3 id="22-config">2.2 Config에 이미 있는 것들<a class="headerlink" href="#22-config" title="Permanent link">&para;</a></h3>
-<p><code>rfdetr/config.py</code>의 <code>TrainConfig</code> (및 <code>SegmentationTrainConfig</code>)에는 이미 다음이 정의되어 있음:</p>
-<ul>
-<li><code>dataset_dir</code>, <code>output_dir</code>, <code>epochs</code>, <code>batch_size</code>, <code>grad_accum_steps</code>, <code>lr</code>, <code>resume</code></li>
-<li><code>early_stopping</code>, <code>early_stopping_patience</code>, <code>early_stopping_min_delta</code>, <code>early_stopping_use_ema</code></li>
-<li><strong><code>wandb: bool = True</code></strong>, <strong><code>project</code></strong>, <strong><code>run</code></strong></li>
-<li><code>tensorboard</code>, <code>class_names</code>, <code>dataset_file</code>, …</li>
-</ul>
-<p>즉 <strong>wandb 사용 여부·프로젝트·run 이름은 이미 config 단에서 다 정의되어 있고</strong>, <code>train_from_config()</code> 안에서 이렇게 사용됨:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># detr.py train_from_config()</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">wandb</span><span class="p">:</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">metrics_wandb_sink</span> <span class="o">=</span> <span class="n">MetricsWandBSink</span><span class="p">(</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="n">output_dir</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="n">project</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">project</span><span class="p">,</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="n">run</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">run</span><span class="p">,</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="p">)</span>
-</span></code></pre></div>
-<p>그리고 <code>MetricsWandBSink</code> 생성자 안에서 <strong>이미 <code>wandb.init(project=..., name=run, config=config, ...)</code> 를 호출</strong>함 (<code>util/metrics.py</code>).<br />
-따라서 <strong>스크립트에서 한 번 더 wandb.init()를 호출하면 이중 초기화</strong>가 되고, run/프로젝트가 두 군데서 설정될 수 있어 혼란과 중복이 생김.</p>
-<hr />
-<h2 id="3">3. 스크립트에서 넘기면 안 되거나 무시되는 인자<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="recommendations-by-dataset-size">Recommendations by Dataset Size<a class="headerlink" href="#recommendations-by-dataset-size" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>스크립트 인자</th>
-<th>TrainConfig 여부</th>
-<th>비고</th>
+<th>Dataset Size</th>
+<th>Recommended preset</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>train_ann_file</code></td>
-<td>❌ 없음</td>
-<td>roboflow는 <code>dataset_dir</code>만 있으면 <code>train/_annotations.coco.json</code> 등 경로 고정. <strong>무시됨</strong></td>
+<td>Under 500 images</td>
+<td><code>AUG_CONSERVATIVE</code> — flip + mild brightness/contrast</td>
 </tr>
 <tr>
-<td><code>val_ann_file</code></td>
-<td>❌ 없음</td>
-<td>동일. <strong>무시됨</strong></td>
+<td>500–2000 images</td>
+<td>Default or <code>AUG_CONSERVATIVE</code> with a few extra transforms added</td>
 </tr>
 <tr>
-<td><code>resolution</code></td>
-<td>❌ 없음</td>
-<td>해상도는 <strong>모델 config</strong>(예: RFDETRSegMediumConfig.resolution)에만 있음. train()에 넣어도 반영 안 됨</td>
+<td>2000+ images</td>
+<td><code>AUG_AGGRESSIVE</code> — rotations, affine, color jitter</td>
 </tr>
 </tbody>
 </table>
-<p>해상도를 바꾸고 싶다면 <strong>모델 크기</strong>(RFDETRSegSmall vs RFDETRSegMedium 등)를 바꾸는 수밖에 없고, <code>train()</code>에 <code>resolution=</code>를 넘기는 건 효과 없음.</p>
-<hr />
-<h2 id="4">4. 권장 작성 방식<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h2 id="geometric-vs-pixel-level-transforms">Geometric vs. Pixel-Level Transforms<a class="headerlink" href="#geometric-vs-pixel-level-transforms" title="Permanent link">&para;</a></h2>
+<p>RF-DETR automatically handles bounding boxes for <strong>geometric transforms</strong> (flips, rotations, crops, affine, perspective). <strong>Pixel-level transforms</strong> (blur, noise, color) preserve coordinates unchanged. You don't need to handle this distinction — it's automatic based on the transform name.</p>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Start Conservative</p>
+<p>Begin with simple augmentations (horizontal flip, small brightness changes) and gradually add more as needed.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Geometric Transforms</p>
+<p>Be careful with aggressive rotations and crops on datasets where object orientation matters (e.g., text detection, oriented objects).</p>
+</div>
 <ul>
-<li><strong>wandb</strong>: 스크립트에서 <code>wandb.init()</code> 호출 제거.<br />
-<code>model.train(..., wandb=True, project="cell_rfdetr", run=run_name)</code> 처럼 <strong>config 경로로만</strong> 넘기면, rfdetr이 한 번만 init하고 메트릭까지 동일 run에 로깅함.</li>
-<li><strong>train() 인자</strong>: <code>dataset_dir</code>, <code>output_dir</code>, <code>epochs</code>, <code>batch_size</code>, <code>grad_accum_steps</code>, <code>lr</code>, <code>resume</code>, <code>early_stopping</code>, <code>wandb</code>, <code>project</code>, <code>run</code> 등 <strong>TrainConfig에 실제로 있는 필드만</strong> 넘기기.</li>
-<li><strong>resolution / size</strong>: train() 인자에서 제거하고, <strong>모델 클래스 선택</strong>(예: <code>--size S</code> → RFDETRSegSmall, <code>--size M</code> → RFDETRSegMedium)으로만 해상도 간접 선택.</li>
-<li><strong>sanity check, output_dir 타임스탬프, GPU cleanup</strong> 등은 스크립트에 두어도 됨.<br />
-  다만 <strong>best checkpoint artifact</strong>는 run이 이미 끝난 뒤에 올리면 run과 연결이 안 되므로, 필요하면 rfdetr 콜백으로 넣거나 제거하는 편이 정리하기 좋음.</li>
+<li><strong>CPU-bound:</strong> Augmentations run on CPU during data loading — more transforms means slower loading</li>
+<li><strong>Use <code>num_workers</code>:</strong> Parallelize augmentation across data loader workers</li>
+<li><strong>Monitor training mAP vs validation mAP:</strong> With strong augmentations it's normal for training mAP to be lower — validation uses original images while training uses augmented (harder) ones</li>
 </ul>
-<p>이렇게 하면 <strong>config 한 곳에서만</strong> wandb·학습 인자가 정의되고, 스크립트는 “어떤 데이터/출력/run 이름으로 학습할지”만 정해 주는 역할로 맞출 수 있어 중복이 사라짐.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p><strong>Training is slow</strong> — reduce the number of transforms or increase <code>num_workers</code>.</p>
+<p><strong>Boxes disappear after augmentation</strong> — aggressive rotations or crops can push boxes outside the image boundary. Reduce rotation angles or avoid large crops.</p>
+<p><strong>Model not improving</strong> — augmentations may be too aggressive. Start with <code>AUG_CONSERVATIVE</code> and add transforms gradually. Try removing geometric transforms first to isolate the cause.</p>
+<p><strong>Validation mAP is much higher than training mAP</strong> — this is expected with strong augmentations and not a bug. See the monitoring tip above.</p>
+<h2 id="advanced-custom-transforms">Advanced: Custom Transforms<a class="headerlink" href="#advanced-custom-transforms" title="Permanent link">&para;</a></h2>
+<p>Any Albumentations transform works by name. If your custom transform is geometric, register it in <code>rfdetr/datasets/transforms.py</code> so boxes are updated automatically:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">GEOMETRIC_TRANSFORMS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="o">...</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="s2">&quot;YourCustomTransform&quot;</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Then use it like any other transform:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">dataset_dir</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">aug_config</span><span class="o">=</span><span class="p">{</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="s2">&quot;HorizontalFlip&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="s2">&quot;YourCustomTransform&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;param&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">},</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="p">},</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://albumentations.ai/docs/">Albumentations docs</a></li>
+<li><a href="https://albumentations.ai/docs/api_reference/augmentations/">All available transforms</a></li>
+</ul>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../loggers/#tensorboard">Monitor training with TensorBoard</a></li>
+<li><a href="../advanced/#early-stopping">Use early stopping</a> to prevent overfitting</li>
+<li><a href="../../export/">Export your trained model</a> for deployment</li>
+</ul>
 
 
 
@@ -2016,10 +2354,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "content.code.copy", "navigation.expand", "navigation.tabs", "content.code.annotate", "navigation.tracking", "content.tooltips", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.tabs.link", "content.code.copy", "navigation.expand", "navigation.tabs", "content.code.annotate", "navigation.tracking", "content.tooltips", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
