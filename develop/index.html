@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="SOTA Real-Time Object Detection Model">
+        <meta name="description" content="RF-DETR is a real-time transformer for object detection, instance segmentation, and keypoint detection (preview) by Roboflow. DINOv2 backbone, SOTA on COCO (60.1 AP50:95). Apache 2.0.">
       
       
         <meta name="author" content="Roboflow">
@@ -16,22 +16,22 @@
       
       
       
-        <link rel="next" href="learn/install/">
+        <link rel="next" href="getting-started/install/">
       
       
         
       
       
       <link rel="icon" href="assets/roboflow-logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
-      
-        <title>RF-DETR</title>
-      
+  
+    <title>RF-DETR &mdash; Real-Time Object Detection &amp; Segmentation by Roboflow</title>
+  
+
     
-    
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -60,6 +60,224 @@
 
     
     
+  
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5M220DKLMB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5M220DKLMB');
+  </script>
+  <link rel="preconnect" href="https://storage.googleapis.com">
+
+  
+  
+  
+  <meta property="og:title" content="RF-DETR &mdash; Real-Time Object Detection &amp; Segmentation by Roboflow">
+  <meta property="og:description" content="RF-DETR is a real-time transformer for object detection, instance segmentation, and keypoint detection (preview) by Roboflow. DINOv2 backbone, SOTA on COCO (60.1 AP50:95). Apache 2.0.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rfdetr.roboflow.com/develop/">
+  <meta property="og:image" content="https://storage.googleapis.com/com-roboflow-marketing/rf-detr/rf_detr_1-4_latency_accuracy_object_detection.png">
+  <meta property="og:image:width" content="840">
+  <meta property="og:image:height" content="630">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@roboflow">
+  <meta name="twitter:title" content="RF-DETR &mdash; Real-Time Object Detection &amp; Segmentation by Roboflow">
+  <meta name="twitter:description" content="RF-DETR is a real-time transformer for object detection, instance segmentation, and keypoint detection (preview) by Roboflow. DINOv2 backbone, SOTA on COCO (60.1 AP50:95). Apache 2.0.">
+  <meta name="twitter:image" content="https://storage.googleapis.com/com-roboflow-marketing/rf-detr/rf_detr_1-4_latency_accuracy_object_detection.png">
+
+  
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://roboflow.com/#organization",
+        "name": "Roboflow",
+        "url": "https://roboflow.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rfdetr.roboflow.com/latest/assets/roboflow-logo.svg",
+          "width": 400,
+          "height": 400
+        },
+        "description": "Roboflow is a computer vision platform for dataset management, model training, and deployment. Creator of RF-DETR, Supervision, and Roboflow Inference.",
+        "sameAs": [
+          "https://github.com/roboflow",
+          "https://www.linkedin.com/company/roboflow-ai/",
+          "https://twitter.com/roboflow",
+          "https://www.youtube.com/@Roboflow",
+          "https://en.wikipedia.org/wiki/Roboflow",
+          "https://huggingface.co/roboflow",
+          "https://www.crunchbase.com/organization/roboflow"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://rfdetr.roboflow.com/develop#software",
+        "name": "RF-DETR",
+        "alternateName": "rfdetr",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Computer vision model",
+        "operatingSystem": "Linux, macOS, Windows",
+        "url": "https://rfdetr.roboflow.com/develop",
+        "downloadUrl": "https://pypi.org/project/rfdetr/",
+        "softwareVersion": "1.10.0.dev",
+        "softwareRequirements": "Python >=3.10; torch >=2.2.0; torchvision >=0.17.0; transformers >=5.1.0,<6.0.0",
+        "identifier": [
+          {"@type": "PropertyValue", "propertyID": "Python package", "value": "rfdetr"},
+          {"@type": "PropertyValue", "propertyID": "GitHub repository", "value": "roboflow/rf-detr"},
+          {"@type": "PropertyValue", "propertyID": "arXiv", "value": "2511.09554"}
+        ],
+        "releaseNotes": "https://github.com/roboflow/rf-detr/blob/main/CHANGELOG.md",
+        "description": "RF-DETR is a real-time transformer architecture for object detection and instance segmentation by Roboflow. DINOv2 backbone, SOTA on COCO (60.1 AP50:95). ICLR 2026. Apache 2.0.",
+        "keywords": "RF-DETR, rfdetr, object detection, instance segmentation, real-time detection transformer, DINOv2, COCO, RF100-VL, ONNX, TensorRT",
+        "featureList": [
+          "Real-time object detection",
+          "Instance segmentation",
+          "DINOv2 vision transformer backbone",
+          "ONNX and TensorRT FP16/INT8 export",
+          "Fine-tuning on custom COCO and YOLO datasets",
+          "Multi-GPU distributed training",
+          "EMA model averaging"
+        ],
+        "author": {"@type": "Organization", "name": "Roboflow", "url": "https://roboflow.com"},
+        "license": "https://www.apache.org/licenses/LICENSE-2.0",
+        "codeRepository": "https://github.com/roboflow/rf-detr",
+        "programmingLanguage": "Python",
+        "runtimePlatform": "Python 3.10+",
+        "isAccessibleForFree": true,
+        "citation": "https://arxiv.org/abs/2511.09554",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://pypi.org/project/rfdetr/"
+        },
+        "sameAs": [
+          "https://github.com/roboflow/rf-detr",
+          "https://pypi.org/project/rfdetr/",
+          "https://arxiv.org/abs/2511.09554"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://rfdetr.roboflow.com/develop#website",
+        "name": "RF-DETR Documentation",
+        "url": "https://rfdetr.roboflow.com/develop",
+        "description": "Real-time transformer for object detection and instance segmentation. DINOv2 backbone, SOTA on COCO (60.1 AP50:95). Apache 2.0. Works with Python \u22653.10.",
+        "publisher": {"@type": "Organization", "name": "Roboflow", "url": "https://roboflow.com"},
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://rfdetr.roboflow.com/latest/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is RF-DETR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "RF-DETR (Roboflow Detection Transformer) is a real-time object detection and instance segmentation model from Roboflow, accepted at ICLR 2026. It uses a DINOv2 vision transformer backbone and achieves state-of-the-art accuracy\u2013latency trade-offs on COCO (60.1 AP50:95 for RF-DETR-2XL) and RF100-VL."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does RF-DETR compare to YOLOv11?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "RF-DETR-L achieves 56.5 AP50:95 on COCO at 6.8\u00a0ms latency on an NVIDIA T4, outperforming YOLOv11x (54.7 AP) at lower latency. The DINOv2 backbone gives RF-DETR stronger performance on domain-shift benchmarks such as RF100-VL."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What GPU is required to train RF-DETR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A CUDA-capable GPU with at least 8\u00a0GB VRAM is recommended for fine-tuning. Smaller models (RF-DETR-N and RF-DETR-S) can fit in 6\u00a0GB VRAM with a reduced batch size. CPU inference is supported for evaluation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which dataset formats does RF-DETR support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "RF-DETR supports COCO JSON and YOLO-format datasets. Roboflow datasets export directly to both formats. Detection and segmentation datasets use the same format \u2014 the model variant determines the task."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can RF-DETR run in real time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. RF-DETR-N runs at 2.3\u00a0ms per frame on a T4 GPU (TensorRT FP16, batch 1), and RF-DETR-L at 6.8\u00a0ms \u2014 both well within real-time thresholds. ONNX and TFLite exports are available for edge deployment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between RF-DETR detection and segmentation models?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Detection models output bounding boxes. Segmentation models additionally output instance masks. Both share the same backbone and training API; segmentation adds a mask head and requires COCO-format segmentation annotations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is RF-DETR open source?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Core models (Nano through Large) and all training/inference code are released under the Apache 2.0 license. XLarge and 2XLarge models require the rfdetr[plus] package (PML 1.0 license)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I fine-tune RF-DETR on a custom dataset?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Instantiate a model and call model.train(...) with your dataset directory in COCO JSON or YOLO format. Example: model = RFDETRLarge(); model.train(dataset_dir='./dataset', epochs=50, batch_size=4). The model downloads pretrained weights automatically and resumes from the best checkpoint."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I export RF-DETR to ONNX or TensorRT?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Call model.export(format='onnx') after training or loading a checkpoint. ONNX export works on CPU and produces a single .onnx file compatible with ONNX Runtime and OpenCV DNN. For TensorRT deployment, use model.export(format='tensorrt'), which builds a .trt engine in-process via the TensorRT Python API; this requires pip install rfdetr[trt] and a CUDA GPU."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which RF-DETR model size should I use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "RF-DETR-Nano (2.3\u00a0ms, 67.6\u00a0AP50 on COCO) is best for edge and real-time applications. RF-DETR-Large (6.8\u00a0ms, 56.5\u00a0AP50:95) offers the best accuracy-latency trade-off for server deployment. RF-DETR-2XLarge (17.2\u00a0ms, 60.1\u00a0AP50:95) maximizes accuracy when latency allows."
+        }
+      }
+    ]
+  }
+  </script>
+  
+  
+
   </head>
   
   
@@ -72,7 +290,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rf-detr-real-time-sota-detection-and-segmentation-model" class="md-skip">
+        <a href="#rf-detr-real-time-sota-object-detection-instance-segmentation-and-keypoint-detection" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +325,7 @@
       data-md-component="logo"
     >
       
-  <img src="assets/roboflow-logo.svg" alt="logo">
+  <img src="assets/roboflow-logo.svg" alt="RF-DETR" width="24" height="24">
 
     </a>
 
@@ -136,7 +354,7 @@
             id="item-logo"
             >
             
-  <img src="assets/roboflow-logo.svg" alt="logo">
+  <img src="assets/roboflow-logo.svg" alt="RF-DETR" width="24" height="24">
 
             </a>
             
@@ -158,7 +376,7 @@
         </label>
 
         <!-- Search interface -->
-        <div class="md-search" data-md-component="search" role="dialog">
+        <div class="md-search" data-md-component="search" role="dialog" aria-modal="true" aria-label="Search">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
@@ -196,7 +414,7 @@
 
     <ul class="header-list">
         <li style="align-items: center;" id="resources-list">
-            <label for="dropdown-resources"><span>Resources <img src="https://ka-p.fontawesome.com/releases/v6.6.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93" style="height: 0.5rem;" /></span></label>
+            <label for="dropdown-resources"><span>Resources <span class="header-chevron" aria-hidden="true"></span></span></label>
             <input type="radio" name="dropdown" id="dropdown-resources" style="display: none;" />
             <ul class="resources-sublist sublist">
                 <li><a href="https://blog.roboflow.com">Blog</a></li>
@@ -206,90 +424,83 @@
             </ul>
         </li>
         <li style="align-items: center;" id="products-list">
-            <label for="dropdown-products"><span>Docs <img src="https://ka-p.fontawesome.com/releases/v6.6.0/svgs/regular/chevron-down.svg?v=2&token=a463935e93" style="height: 0.5rem;" /></span></label>
+            <label for="dropdown-products"><span>Docs <span class="header-chevron" aria-hidden="true"></span></span></label>
             <input type="radio" name="dropdown" id="dropdown-products" style="display: none;" />
             <ul class="products-sublist sublist">
                 <li><a href="https://inference.roboflow.com">Inference</a></li>
                 <li><a href="https://supervision.roboflow.com">Supervision</a></li>
                 <li><a href="https://trackers.roboflow.com">Trackers</a></li>
-                <li><a href="https://rf-detr.roboflow.com">RF-DETR</a></li>
+                <li><a href="https://rfdetr.roboflow.com">RF-DETR</a></li>
                 <li><a href="https://maestro.roboflow.com">Maestro</a></li>
                 <li><a href="https://docs.roboflow.com">Roboflow</a></li>
             </ul>
         </li>
-        <script>
-          document.addEventListener('click', function(event) {
-            const resourcesList = document.getElementById('resources-list');
-            const productsList = document.getElementById('products-list');
-            const dropdownResources = document.getElementById('dropdown-resources');
-            const dropdownProducts = document.getElementById('dropdown-products');
-
-            if (!resourcesList.contains(event.target)) {
-              dropdownResources.checked = false;
-            }
-            if (!productsList.contains(event.target)) {
-              dropdownProducts.checked = false;
-            }
-          });
-          // on mouse over
-          document.getElementById('resources-list').addEventListener('mouseover', function() {
-            document.getElementById('dropdown-resources').checked = true;
-          });
-          document.getElementById('products-list').addEventListener('mouseover', function() {
-            document.getElementById('dropdown-products').checked = true;
-          });
-          // on mouse out
-          document.getElementById('resources-list').addEventListener('mouseout', function() {
-            // if not hovering over the sublist or the label, uncheck the dropdown
-            // wait 1 sec
-            setTimeout(function() {
-              if (!document.querySelector('.resources-sublist:hover') && !document.querySelector('#resources-list:hover')) {
-                document.getElementById('dropdown-resources').checked = false;
-              }
-            }, 350);
-          });
-          // if mouseout of sublist, uncheck immediately
-          document.querySelector('.resources-sublist').addEventListener('mouseout', function() {
-            setTimeout(function() {
-              if (!document.querySelector('.resources-sublist:hover') && !document.querySelector('#resources-list:hover')) {
-                document.getElementById('dropdown-resources').checked = false;
-              }
-            }, 450);
-          });
-          document.getElementById('products-list').addEventListener('mouseout', function() {
-            // if not hovering over the sublist, uncheck the dropdown
-            // wait 1 sec
-            setTimeout(function() {
-              if (!document.querySelector('.products-sublist:hover') && !document.querySelector('#products-list:hover')) {
-                document.getElementById('dropdown-products').checked = false;
-              }
-            }, 500);
-          });
-          // if mouseout of sublist, uncheck immediately
-          document.querySelector('.products-sublist').addEventListener('mouseout', function() {
-            setTimeout(function() {
-              if (!document.querySelector('.products-sublist:hover') && !document.querySelector('#products-list:hover')) {
-                document.getElementById('dropdown-products').checked = false;
-              }
-            }, 500);
-          });
-
-        </script>
-        <style>
-          #dropdown-resources:checked ~ .resources-sublist {
-            display: block;
-          }
-          #dropdown-products:checked ~ .products-sublist {
-            display: block;
-          }
-          /* Hide dropdown if clicking outside */
-          body:not(:has(#dropdown-resources:checked)) .resources-sublist,
-          body:not(:has(#dropdown-products:checked)) .products-sublist {
-            display: none;
-          }
-        </style>
-        <a href="https://github.com/roboflow/rf-detr"><li class="header-btn" style="border-radius: 5px; color: white; background: var(--md-typeset-a-color); padding-top: 0.25rem; padding-left: 0.5rem; padding-bottom: 0.25rem; padding-right: 0.5rem; border: 1px solid #8315F9;">Go to GitHub</li></a>
+        <li>
+          <a href="https://github.com/roboflow/rf-detr" class="header-btn" style="border-radius: 5px; color: white; background: var(--md-typeset-a-color); padding-top: 0.25rem; padding-left: 0.5rem; padding-bottom: 0.25rem; padding-right: 0.5rem; border: 1px solid #8315F9;">Go to GitHub</a>
+        </li>
     </ul>
+    <script>
+      document.addEventListener('click', function(event) {
+        const resourcesList = document.getElementById('resources-list');
+        const productsList = document.getElementById('products-list');
+        const dropdownResources = document.getElementById('dropdown-resources');
+        const dropdownProducts = document.getElementById('dropdown-products');
+
+        if (!resourcesList.contains(event.target)) {
+          dropdownResources.checked = false;
+        }
+        if (!productsList.contains(event.target)) {
+          dropdownProducts.checked = false;
+        }
+      });
+      document.getElementById('resources-list').addEventListener('mouseover', function() {
+        document.getElementById('dropdown-resources').checked = true;
+      });
+      document.getElementById('products-list').addEventListener('mouseover', function() {
+        document.getElementById('dropdown-products').checked = true;
+      });
+      document.getElementById('resources-list').addEventListener('mouseout', function() {
+        setTimeout(function() {
+          if (!document.querySelector('.resources-sublist:hover') && !document.querySelector('#resources-list:hover')) {
+            document.getElementById('dropdown-resources').checked = false;
+          }
+        }, 350);
+      });
+      document.querySelector('.resources-sublist').addEventListener('mouseout', function() {
+        setTimeout(function() {
+          if (!document.querySelector('.resources-sublist:hover') && !document.querySelector('#resources-list:hover')) {
+            document.getElementById('dropdown-resources').checked = false;
+          }
+        }, 450);
+      });
+      document.getElementById('products-list').addEventListener('mouseout', function() {
+        setTimeout(function() {
+          if (!document.querySelector('.products-sublist:hover') && !document.querySelector('#products-list:hover')) {
+            document.getElementById('dropdown-products').checked = false;
+          }
+        }, 500);
+      });
+      document.querySelector('.products-sublist').addEventListener('mouseout', function() {
+        setTimeout(function() {
+          if (!document.querySelector('.products-sublist:hover') && !document.querySelector('#products-list:hover')) {
+            document.getElementById('dropdown-products').checked = false;
+          }
+        }, 500);
+      });
+      function labelCurrentVersion() {
+        document.querySelectorAll('.md-version__current').forEach(function(button) {
+          const label = button.textContent.trim();
+          if (label) {
+            button.setAttribute('aria-label', label);
+          }
+        });
+      }
+      labelCurrentVersion();
+      const versionMenu = document.querySelector('.md-version');
+      if (versionMenu) {
+        new MutationObserver(labelCurrentVersion).observe(versionMenu, { childList: true, subtree: true });
+      }
+    </script>
   </nav>
 
   <!-- Navigation tabs (sticky) -->
@@ -328,8 +539,15 @@
   
     
     
+      
+  
+  
+  
+  
+    
+    
       <li class="md-tabs__item">
-        <a href="learn/install/" class="md-tabs__link">
+        <a href="getting-started/install/" class="md-tabs__link">
           
   
   
@@ -337,6 +555,9 @@
 
         </a>
       </li>
+    
+  
+
     
   
 
@@ -367,13 +588,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="tutorials/" class="md-tabs__link">
+      <a href="faq/" class="md-tabs__link">
         
   
   
     
   
-  Tutorials
+  FAQ
 
       </a>
     </li>
@@ -386,7 +607,45 @@
   
   
     <li class="md-tabs__item">
-      <a href="https://github.com/roboflow/rf-detr/releases" class="md-tabs__link">
+      <a href="cookbooks/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cookbooks
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="resources/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Resources
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="changelog/" class="md-tabs__link">
         
   
   
@@ -431,7 +690,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="." title="RF-DETR" class="md-nav__button md-logo" aria-label="RF-DETR" data-md-component="logo">
       
-  <img src="assets/roboflow-logo.svg" alt="logo">
+  <img src="assets/roboflow-logo.svg" alt="RF-DETR" width="24" height="24">
 
     </a>
     RF-DETR
@@ -584,8 +843,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#keypoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keypoints
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequently-asked-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frequently Asked Questions
+      
+    </span>
+  </a>
   
 </li>
       
@@ -655,8 +936,60 @@
   
   
   
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="learn/install/" class="md-nav__link">
+      <a href="getting-started/install/" class="md-nav__link">
         
   
   
@@ -672,6 +1005,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -772,6 +1141,34 @@
     
   
     Segmentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="learn/run/keypoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keypoints
   
 
     
@@ -972,6 +1369,34 @@
     
   
     Advanced Training
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="learn/train/customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Training API
   
 
     
@@ -1335,34 +1760,6 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/base/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    RF-DETR Base (Deprecated)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="reference/medium/" class="md-nav__link">
         
   
@@ -1455,34 +1852,6 @@
     
   
     RF-DETR 2XLarge
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="reference/large_deprecated/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    RF-DETR Large (Deprecated)
   
 
     
@@ -1724,6 +2093,66 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keypoint Models
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Keypoint Models
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -1731,14 +2160,14 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/seg_preview/" class="md-nav__link">
+      <a href="reference/kp_preview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    RF-DETR Seg Preview (Deprecated)
+    RF-DETR Keypoint Preview
   
 
     
@@ -1780,10 +2209,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
             
   
   
@@ -1801,8 +2230,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1868,6 +2297,122 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/keypoint_train_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keypoint Train Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lightning Training
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lightning Training
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training Primitives
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1890,14 +2435,14 @@
   
   
     <li class="md-nav__item">
-      <a href="tutorials/" class="md-nav__link">
+      <a href="faq/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Tutorials
+    FAQ
   
 
     
@@ -1917,7 +2462,61 @@
   
   
     <li class="md-nav__item">
-      <a href="https://github.com/roboflow/rf-detr/releases" class="md-nav__link">
+      <a href="cookbooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="changelog/" class="md-nav__link">
         
   
   
@@ -2032,8 +2631,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#keypoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keypoints
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequently-asked-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frequently Asked Questions
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2059,28 +2680,37 @@
   
 
 
-<h1 id="rf-detr-real-time-sota-detection-and-segmentation-model">RF-DETR: Real-Time SOTA Detection and Segmentation Model<a class="headerlink" href="#rf-detr-real-time-sota-detection-and-segmentation-model" title="Permanent link">&para;</a></h1>
-<p>RF-DETR is a real-time transformer architecture for object detection and instance segmentation developed by Roboflow. Built on a DINOv2 vision transformer backbone, RF-DETR delivers state-of-the-art accuracy and latency trade-offs on Microsoft COCO and RF100-VL.</p>
-<p>RF-DETR uses a DINOv2 vision transformer backbone and supports both detection and instance segmentation in a single, consistent API. All core models and code are released under the Apache 2.0 license.</p>
+<h1 id="rf-detr-real-time-sota-object-detection-instance-segmentation-and-keypoint-detection">RF-DETR: Real-Time SOTA Object Detection, Instance Segmentation, and Keypoint Detection<a class="headerlink" href="#rf-detr-real-time-sota-object-detection-instance-segmentation-and-keypoint-detection" title="Permanent link">&para;</a></h1>
+<p>RF-DETR is a real-time transformer architecture for object detection, instance segmentation, and keypoint detection (preview) developed by Roboflow. Built on a DINOv2 vision transformer backbone, RF-DETR achieves state-of-the-art accuracy–latency trade-offs: RF-DETR-L reaches 56.5 AP50:95 on COCO at 6.8 ms (NVIDIA T4, TensorRT FP16), and RF-DETR-2XL achieves 60.1 AP50:95 — the first real-time model to exceed 60 AP on COCO. Accepted at <a href="https://arxiv.org/abs/2511.09554">ICLR 2026</a>.</p>
+<p>RF-DETR uses a DINOv2 vision transformer backbone and supports object detection, instance segmentation, and keypoint detection (preview) in a single, consistent API. Core models (Nano through Large) and all code are released under the Apache 2.0 license; XL and 2XLarge detection models require <code>rfdetr[plus]</code> and are provided under PML 1.0.</p>
+<p>Developed by Isaac Robinson, Peter Robicheaux, Matvei Popov, Deva Ramanan (CMU), and Neehar Peri (CMU) at <a href="https://roboflow.com">Roboflow</a>. If you use RF-DETR in your research, please cite:</p>
+<div class="language-bibtex highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">robinson2026rfdetr</span><span class="p">,</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="na">title</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="s">{RF-DETR: Real-Time Detection Transformer}</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="na">author</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">{Robinson, Isaac and Robicheaux, Peter and Popov, Matvei and Ramanan, Deva and Peri, Neehar}</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="na">booktitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{International Conference on Learning Representations (ICLR)}</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="na">year</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{2026}</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="na">url</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">{https://arxiv.org/abs/2511.09554}</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
+</span></code></pre></div>
 <h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
-<p>You can install and use <code>rfdetr</code> in a <a href="https://www.python.org/"><strong>Python&gt;=3.10</strong></a> environment. For detailed installation instructions, including installing from source, and setting up a local development environment, check out our <a href="learn/install/">install</a> page.</p>
+<p>You can install and use <code>rfdetr</code> in a <a href="https://www.python.org/"><strong>Python&gt;=3.10</strong></a> environment. For detailed installation instructions, including installing from source, and setting up a local development environment, check out our <a href="getting-started/install/">install</a> page.</p>
 <div class="admonition example">
 <p class="admonition-title">Installation</p>
-<p><a href="https://badge.fury.io/py/rfdetr"><img alt="version" src="https://badge.fury.io/py/rfdetr.svg" /></a>
-<a href="https://badge.fury.io/py/rfdetr"><img alt="python-version" src="https://img.shields.io/pypi/pyversions/rfdetr" /></a>
-<a href="https://github.com/roboflow/rfdetr/blob/main/LICENSE"><img alt="license" src="https://img.shields.io/pypi/l/rfdetr" /></a>
-<a href="https://pypistats.org/packages/rfdetr"><img alt="downloads" src="https://img.shields.io/pypi/dm/rfdetr" /></a></p>
+<p><a href="https://badge.fury.io/py/rfdetr"><img alt="version" src="https://badge.fury.io/py/rfdetr.svg" width="125" height="20" /></a>
+<a href="https://badge.fury.io/py/rfdetr"><img alt="python-version" src="https://img.shields.io/pypi/pyversions/rfdetr" width="198" height="20" /></a>
+<a href="https://github.com/roboflow/rf-detr/blob/main/LICENSE"><img alt="license" src="https://img.shields.io/pypi/l/rfdetr" width="164" height="20" /></a>
+<a href="https://pypistats.org/packages/rfdetr"><img alt="downloads" src="https://img.shields.io/pypi/dm/rfdetr" width="258" height="20" /></a></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">pip</label><label for="__tabbed_1_2">uv</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>rfdetr
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>rfdetr
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>rfdetr
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>rfdetr
 </span></code></pre></div>
 <p>For uv projects:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>add<span class="w"> </span>rfdetr
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>add<span class="w"> </span>rfdetr
 </span></code></pre></div>
 </div>
 </div>
@@ -2105,7 +2735,7 @@
 <p><strong>Train Models</strong></p>
 <hr />
 <p>Learn how to fine-tune RF-DETR models for detection and segmentation.</p>
-<p><a href="/learn/train/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Tutorial</a></p>
+<p><a href="learn/train/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Tutorial</a></p>
 </li>
 </ul>
 </div>
@@ -2115,30 +2745,30 @@
 <li>
 <p><strong>Train RF-DETR on a Custom Dataset. Video</strong></p>
 <hr />
-<p><img alt="" src="https://i.ytimg.com/vi/-OvpdLAElFA/maxresdefault.jpg" /></p>
+<p><img alt="Train RF-DETR on a Custom Dataset" height="720" loading="lazy" src="https://i.ytimg.com/vi/-OvpdLAElFA/maxresdefault.jpg" width="1280" /></p>
 <p>End to end walkthrough of training RF-DETR on a custom dataset.</p>
 <p><a href="https://www.youtube.com/watch?v=-OvpdLAElFA"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Watch the video</a></p>
 </li>
 <li>
 <p><strong>Deploy RF-DETR to NVIDIA Jetson. Article</strong></p>
 <hr />
-<p><img alt="" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/06/inst-3-.png" /></p>
+<p><img alt="Deploy RF-DETR to NVIDIA Jetson" height="563" loading="lazy" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/06/inst-3-.png" width="1000" /></p>
 <p>Instructions for deploying RF-DETR on NVIDIA Jetson with Roboflow Inference.</p>
 <p><a href="https://blog.roboflow.com/how-to-deploy-rf-detr-to-an-nvidia-jetson/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Read the tutorial</a></p>
 </li>
 <li>
 <p><strong>Train and Deploy RF-DETR with Roboflow</strong></p>
 <hr />
-<p><img alt="" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/03/img-blog-nycerebro-2.png" /></p>
+<p><img alt="Train and Deploy RF-DETR with Roboflow" height="563" loading="lazy" src="https://blog.roboflow.com/content/images/size/w1000/format/webp/2025/03/img-blog-nycerebro-2.png" width="1000" /></p>
 <p>Cloud training and hardware deployment workflow using Roboflow.</p>
 <p><a href="https://blog.roboflow.com/train-and-deploy-rf-detr-models-with-roboflow/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Read the tutorial</a></p>
 </li>
 </ul>
 </div>
 <h2 id="benchmarks">Benchmarks<a class="headerlink" href="#benchmarks" title="Permanent link">&para;</a></h2>
-<p>RF-DETR achieves the best accuracy–latency trade-off among real-time object detection and instance segmentation models — both on COCO and on the more demanding RF100-VL benchmark (domain adaptability). For detailed benchmark tables and methodology, check out our <a href="learn/benchmarks/">benchmarks</a> page.</p>
+<p>RF-DETR achieves the best accuracy–latency trade-off among real-time object detection and instance segmentation models. It also provides keypoint detection (preview) on COCO person keypoints. For detailed benchmark tables and methodology, check out our <a href="learn/benchmarks/">benchmarks</a> page.</p>
 <h3 id="detection">Detection<a class="headerlink" href="#detection" title="Permanent link">&para;</a></h3>
-<p><img alt="Pareto front – detection" src="https://storage.googleapis.com/com-roboflow-marketing/rf-detr/rf_detr_1-4_latency_accuracy_object_detection.png" style="max-width: 840px; height: auto;" /></p>
+<p><img alt="Pareto front — detection accuracy vs latency: RF-DETR-2XL achieves 78.5 COCO AP50 (60.1 AP50:95) at 17.2 ms; RF-DETR-L achieves 75.1 AP50 at 6.8 ms, outperforming YOLO11x at comparable latency" src="https://storage.googleapis.com/com-roboflow-marketing/rf-detr/rf_detr_1-4_latency_accuracy_object_detection.png" width="840" height="630" style="max-width: 840px; height: auto;" /></p>
 <table>
 <thead>
 <tr>
@@ -2216,7 +2846,7 @@
 </tbody>
 </table>
 <h3 id="segmentation">Segmentation<a class="headerlink" href="#segmentation" title="Permanent link">&para;</a></h3>
-<p><img alt="Pareto front – segmentation" src="https://storage.googleapis.com/com-roboflow-marketing/rf-detr/rf_detr_1-4_latency_accuracy_instance_segmentation.png" style="max-width: 840px; height: auto;" /></p>
+<p><img alt="Pareto front — segmentation accuracy vs latency: RF-DETR-Seg-2XL achieves 73.1 COCO AP50 (49.9 AP50:95) at 21.8 ms; RF-DETR-Seg-L achieves 70.5 AP50 at 8.8 ms" src="https://storage.googleapis.com/com-roboflow-marketing/rf-detr/rf_detr_1-4_latency_accuracy_instance_segmentation.png" width="840" height="630" style="max-width: 840px; height: auto;" /></p>
 <table>
 <thead>
 <tr>
@@ -2279,6 +2909,58 @@
 </tr>
 </tbody>
 </table>
+<h3 id="keypoints">Keypoints<a class="headerlink" href="#keypoints" title="Permanent link">&para;</a></h3>
+<p><img alt="RF-DETR Keypoint mAP vs latency chart comparing against YOLO26-pose and YOLO11-pose on MS COCO" src="assets/keypoints/kp-map-latency.png" width="840" height="630" style="max-width: 840px; height: auto;" /></p>
+<table>
+<thead>
+<tr>
+<th>Architecture</th>
+<th>COCO AP<sub>50:95</sub></th>
+<th>Latency (ms)</th>
+<th>Params (M)</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-DETR Keypoint (Preview)</td>
+<td>71.8</td>
+<td>9.7</td>
+<td>40.7</td>
+<td>576×576</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Keypoint benchmarks report AP<sub>50:95</sub> (OKS-based); this is the standard COCO keypoint comparison metric.
+For the full competitor comparison (YOLO11-pose, YOLO26-pose), see the <a href="learn/benchmarks/#keypoints">Benchmarks</a> page.</p>
+</blockquote>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h2>
+<p><strong>What is RF-DETR?</strong>
+RF-DETR (Roboflow Detection Transformer) is a real-time object detection and instance segmentation model from Roboflow, accepted at ICLR 2026. It uses a DINOv2 vision transformer backbone and achieves state-of-the-art accuracy–latency trade-offs on COCO (60.1 AP50:95 for RF-DETR-2XL) and RF100-VL.</p>
+<p><strong>How does RF-DETR compare to YOLOv11?</strong>
+RF-DETR-L achieves 56.5 AP50:95 on COCO at 6.8 ms latency on an NVIDIA T4, outperforming YOLOv11x (50.9 AP) at lower latency. The DINOv2 backbone gives RF-DETR stronger performance on domain-shift benchmarks such as RF100-VL.</p>
+<p><strong>What GPU is required to train RF-DETR?</strong>
+A CUDA-capable GPU with at least 8 GB VRAM (e.g., NVIDIA RTX 3060, T4, A10) is recommended for fine-tuning. Smaller models (RF-DETR-N and RF-DETR-S) can fit in 6 GB VRAM with reduced batch size. CPU inference is supported for evaluation.</p>
+<p><strong>Which dataset formats does RF-DETR support?</strong>
+RF-DETR supports COCO JSON and YOLO-format datasets (with <code>dataset_file: "yolo"</code>). Roboflow datasets export directly to both formats. Detection and segmentation datasets use the same format — the model variant determines the task.</p>
+<p><strong>Can RF-DETR run in real time?</strong>
+Yes. RF-DETR-N runs at 2.3 ms per frame on a T4 GPU (TensorRT FP16, batch 1), and RF-DETR-L at 6.8 ms — both well within real-time thresholds. ONNX and TFLite exports are available for edge deployment.</p>
+<p><strong>What is the difference between RF-DETR detection and segmentation models?</strong>
+Detection models (e.g., <code>RFDETRLarge</code>) output bounding boxes. Segmentation models (e.g., <code>RFDETRSegLarge</code>) additionally output instance masks. Both share the same backbone and training API; segmentation adds a mask head and requires COCO-format segmentation annotations.</p>
+<p><strong>Does RF-DETR support keypoint detection?</strong>
+RF-DETR Keypoint (Preview) detects 17 body keypoints per person on COCO, achieving 71.8 AP50:95 at 9.7 ms on NVIDIA T4. It is available in the <code>rfdetr</code> package as <code>RFDETRKeypointPreview</code>. See <a href="learn/run/keypoints/">Run Keypoint Models</a> for usage.</p>
+<p><strong>Is RF-DETR open source?</strong>
+Yes. Core models (Nano through Large) and all training/inference code are released under the Apache 2.0 license. XLarge and 2XLarge models require the <code>rfdetr[plus]</code> package (PML 1.0 license).</p>
+<p><strong>How do I fine-tune RF-DETR on a custom dataset?</strong>
+Instantiate a model and call <code>model.train(...)</code> with your dataset directory in COCO JSON or YOLO format. Example: <code>model = RFDETRLarge(); model.train(dataset_dir='./dataset', epochs=50, batch_size=4)</code>. The model downloads pretrained weights automatically and saves best checkpoints automatically (use <code>resume=</code> to continue from one).</p>
+<p><strong>How do I export RF-DETR to ONNX or TensorRT?</strong>
+Call <code>model.export(format="onnx")</code> after training or loading a checkpoint. ONNX export works on CPU and produces a single <code>.onnx</code> file compatible with ONNX Runtime and OpenCV DNN. For TensorRT deployment, use <code>model.export(format="tensorrt")</code>, which exports ONNX and then builds a <code>.trt</code> engine in-process via the TensorRT Python API; this requires <code>pip install rfdetr[tensorrt]</code> and a CUDA GPU.</p>
+<p><strong>Which RF-DETR model size should I use?</strong>
+RF-DETR-Nano (2.3 ms, 67.6 AP50 on COCO) is best for edge and real-time applications. RF-DETR-Large (6.8 ms, 56.5 AP50:95) offers the best accuracy–latency trade-off for server deployment. RF-DETR-2XLarge (17.2 ms, 60.1 AP50:95) maximizes accuracy when latency allows.</p>
+<blockquote>
+<p><strong>Checkpoint note:</strong> Current <code>RFDETRLarge</code> defaults to <code>rf-detr-large-2026.pth</code>. The older <code>rf-detr-large.pth</code> checkpoint is a legacy Large release kept for backward compatibility and has been superseded by the current release.</p>
+</blockquote>
 
 
 
@@ -2287,8 +2969,26 @@
 
 
   
+    
+  
   
 
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="July 31, 2026 08:36:15 UTC">2026-07-31 08:36:15</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
 
 
 
@@ -2315,7 +3015,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Roboflow 2025. All rights reserved.
+      Roboflow 2025–2026. All rights reserved.
     </div>
   
   
@@ -2391,7 +3091,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.tabs.link", "content.code.copy", "navigation.expand", "navigation.tabs", "content.code.annotate", "navigation.tracking", "content.tooltips", "navigation.tabs.sticky"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
